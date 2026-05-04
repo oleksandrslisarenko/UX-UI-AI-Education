@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX & AI Prototyping — Training Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F5F1EB;
+  --surface: #FFFFFF;
+  --border: #DDD7CC;
+  --border-light: #EAE5DC;
+  --text: #1C1814;
+  --muted: #78706A;
+  --subtle: #A89F98;
+  --p1: #2E28A0;
+  --p1-light: #ECEBF9;
+  --p2: #156048;
+  --p2-light: #E2F4EE;
+  --p3: #A85410;
+  --p3-light: #FAF0E4;
+  --new: #7C3E0A;
+  --new-light: #FEF3E2;
+  --up: #0A5472;
+  --up-light: #E1F4FB;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --r: 12px;
+  --r-sm: 6px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--text);
+  color: var(--bg);
+  padding: 80px 40px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -160px; right: -100px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46,40,160,.3) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 15%;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,84,16,.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(245,241,235,.45); margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 62px);
+  line-height: 1.08; letter-spacing: -.02em;
+  margin-bottom: 22px; font-weight: 400;
+}
+.hero-title em { font-style: italic; color: rgba(245,241,235,.55); }
+.hero-sub {
+  font-size: 16px; color: rgba(245,241,235,.65);
+  max-width: 540px; line-height: 1.7; margin-bottom: 48px;
+}
+.hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  border-top: 1px solid rgba(245,241,235,.12); padding-top: 32px;
+}
+.stat-n { font-family: var(--font-display); font-size: 34px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+.stat-l { font-size: 11px; color: rgba(245,241,235,.45); letter-spacing: .04em; }
+
+/* ── NAV ── */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,241,235,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center;
+  height: 52px; overflow-x: auto; gap: 0;
+}
+.nav-link {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  text-decoration: none; padding: 0 16px; height: 52px;
+  display: flex; align-items: center; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .18s, border-color .18s;
+}
+.nav-link:hover { color: var(--text); }
+.nav-link.active { color: var(--text); border-bottom-color: var(--text); }
+
+/* ── LAYOUT ── */
+.container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+section { padding: 56px 0; }
+section + section { border-top: 1px solid var(--border); }
+
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--subtle); margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-display); font-size: 30px;
+  font-weight: 400; line-height: 1.18; margin-bottom: 6px;
+}
+.section-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+
+/* ── OVERVIEW ── */
+.phases { display: flex; flex-direction: column; gap: 10px; }
+.phase-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--border);
+  cursor: pointer; transition: transform .14s;
+}
+.phase-row:hover { transform: translateX(4px); }
+.phase-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.phase-name { font-weight: 600; font-size: 15px; flex: 1; }
+.phase-meta { font-size: 12px; color: var(--muted); }
+.phase-pill {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── SHARE BAR ── */
+.share-bar {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px; flex-wrap: wrap;
+}
+.share-text { font-size: 13px; color: var(--muted); flex: 1; }
+.btn {
+  font-size: 12px; font-weight: 600; padding: 8px 16px;
+  border-radius: 8px; border: none; cursor: pointer;
+  font-family: var(--font-body); transition: opacity .15s;
+}
+.btn:hover { opacity: .8; }
+.btn-dark { background: var(--text); color: var(--bg); }
+.btn-light { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+
+/* ── PHASE SECTION HEADER ── */
+.phase-section-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+.phase-stripe { height: 3px; border-radius: 2px; flex: 1; }
+.phase-section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; white-space: nowrap;
+}
+
+/* ── SPEAKER ROW ── */
+.speaker-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: var(--r);
+  border: 1px solid var(--border);
+  background: var(--surface); margin-bottom: 16px;
+}
+.speaker-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.av1 { background: linear-gradient(135deg, #2E28A0, #6B5CE7); }
+.av2 { background: linear-gradient(135deg, #156048, #2AB87B); }
+.av3 { background: linear-gradient(135deg, #A85410, #E8891A); }
+.speaker-info { flex: 1; }
+.speaker-role { font-size: 11px; color: var(--subtle); }
+.speaker-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.speaker-phase-tag {
+  font-size: 10px; font-weight: 600; padding: 2px 8px;
+  border-radius: 3px; text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ── MODULE CARD ── */
+.module-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: box-shadow .18s;
+}
+.module-card:hover { box-shadow: 0 3px 20px rgba(0,0,0,.055); }
+.module-head {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 22px; cursor: pointer;
+}
+.mod-num {
+  font-family: var(--font-display); font-size: 20px; font-weight: 300;
+  color: var(--border); flex-shrink: 0; line-height: 1.1;
+  padding-top: 2px; min-width: 30px;
+}
+.mod-info { flex: 1; }
+.mod-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+.mod-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+.mod-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.badge {
+  font-size: 10px; font-weight: 600; letter-spacing: .05em;
+  padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+}
+.b-theory  { background: var(--p1-light); color: var(--p1); }
+.b-practice{ background: var(--p2-light); color: var(--p2); }
+.b-ai      { background: var(--p3-light); color: var(--p3); }
+.b-new     { background: var(--new-light); color: var(--new); border: .5px solid #F5C28A; }
+.b-up      { background: var(--up-light); color: var(--up); border: .5px solid #7EC8E3; }
+.b-time {
+  font-size: 11px; font-weight: 500; color: var(--subtle);
+  display: flex; align-items: center; gap: 3px; margin-left: auto;
+}
+.b-time::before { content: '⏱'; font-size: 10px; }
+.toggle-arrow {
+  font-size: 15px; color: var(--subtle); flex-shrink: 0;
+  padding-top: 3px; transition: transform .2s;
+}
+.module-card.open .toggle-arrow { transform: rotate(180deg); }
+
+/* ── MODULE BODY ── */
+.module-body {
+  display: none; padding: 0 22px 20px 68px;
+  border-top: 1px solid var(--border-light);
+}
+.module-body.open { display: block; }
+.mod-goal {
+  font-size: 13px; color: var(--muted); line-height: 1.65;
+  padding: 12px 16px; margin: 16px 0;
+  border-left: 3px solid var(--border);
+  background: var(--bg); border-radius: 0 8px 8px 0;
+}
+
+/* ── LESSONS ── */
+.lesson-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.lesson-item { }
+.lesson-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 5px; }
+.lesson-n { font-size: 11px; font-weight: 600; color: var(--subtle); min-width: 28px; padding-top: 2px; }
+.lesson-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
+.lesson-why {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+  padding-left: 38px; margin-bottom: 8px;
+}
+.lesson-links { padding-left: 38px; display: flex; flex-direction: column; gap: 5px; }
+.lesson-link { display: flex; align-items: flex-start; gap: 8px; }
+.link-type {
+  font-size: 9px; font-weight: 700; letter-spacing: .06em;
+  padding: 2px 6px; border-radius: 3px; white-space: nowrap;
+  flex-shrink: 0; margin-top: 2px; text-transform: uppercase;
+}
+.lt-a  { background: #E3EEF9; color: #0C4480; }
+.lt-v  { background: var(--p2-light); color: var(--p2); }
+.lt-d  { background: var(--p3-light); color: var(--p3); }
+.lt-doc{ background: #FDE8E2; color: #7A2010; }
+.lt-tool{ background: #F3F0FB; color: #4A3DA8; }
+.lesson-link a { font-size: 12px; color: var(--p1); text-decoration: none; line-height: 1.5; }
+.lesson-link a:hover { text-decoration: underline; }
+.link-time { font-size: 11px; color: var(--subtle); white-space: nowrap; flex-shrink: 0; padding-top: 2px; margin-left: auto; }
+.lesson-divider { height: 1px; background: var(--border-light); margin: 4px 0 4px 38px; }
+.lesson-foot { padding-left: 38px; font-size: 11px; color: var(--subtle); margin-top: 4px; }
+
+/* ── BOXES ── */
+.practice-box {
+  margin-top: 18px; padding: 14px 16px;
+  background: var(--p3-light); border-radius: 10px;
+  border-left: 3px solid var(--p3);
+}
+.practice-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--p3); margin-bottom: 6px;
+}
+.practice-text { font-size: 12px; line-height: 1.65; color: var(--text); }
+
+.outcome-box {
+  margin-top: 12px; padding: 12px 16px;
+  background: var(--bg); border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.outcome-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--subtle); margin-bottom: 5px;
+}
+.outcome-text { font-size: 12px; line-height: 1.55; color: var(--muted); }
+
+/* ── TOOL GRID ── */
+.tool-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px; margin: 14px 0;
+}
+.tool-card {
+  padding: 14px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+.tool-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.tool-desc { font-size: 11px; color: var(--muted); line-height: 1.45; margin-bottom: 8px; }
+.tool-cat { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.tool-cat-ui { color: var(--p1); }
+.tool-cat-dev { color: var(--p3); }
+.tool-free { font-size: 10px; color: var(--p2); font-weight: 600; margin-bottom: 4px; }
+.tool-link { font-size: 11px; color: var(--p1); text-decoration: none; }
+.tool-link:hover { text-decoration: underline; }
+
+/* ── SUMMARY ── */
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+.summary-card {
+  padding: 20px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r);
+}
+.summary-n { font-family: var(--font-display); font-size: 36px; font-weight: 300; line-height: 1; margin-bottom: 6px; }
+.summary-l { font-size: 12px; color: var(--muted); }
+
+.skills-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.skill-item { display: flex; gap: 12px; align-items: flex-start; }
+.skill-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; margin-top: 1px;
+}
+.skill-text { font-size: 13px; line-height: 1.5; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-top: 1.5rem; padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--text); color: rgba(245,241,235,.45);
+  padding: 40px 32px; text-align: center; font-size: 12px;
+}
+.footer strong { color: var(--bg); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .hero { padding: 48px 20px 40px; }
+  .container, .sticky-nav { padding: 0 16px; }
+  .module-body { padding-left: 22px; }
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 20px; }
+}
+
+@media print {
+  .sticky-nav, .share-bar, .toggle-arrow { display: none !important; }
+  .module-body { display: block !important; }
+  .module-card { page-break-inside: avoid; box-shadow: none; }
+  .hero::before, .hero::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Instructor-Led Course · Version 3.0 · 2025–2026</div>
+    <h1 class="hero-title">UI/UX Design<br>and <em>AI Prototyping</em><br>for Stakeholders</h1>
+    <p class="hero-sub">A course for stakeholders who want to independently create prototypes of web and mobile applications, validate ideas with clients, and evaluate the quality of AI-generated concepts.</p>
+    <div class="hero-stats">
+      <div><div class="stat-n">3</div><div class="stat-l">Phases · 3 Speakers</div></div>
+      <div><div class="stat-n">11</div><div class="stat-l">Modules</div></div>
+      <div><div class="stat-n">~21</div><div class="stat-l">Hours of Learning</div></div>
+      <div><div class="stat-n">7</div><div class="stat-l">AI Tools</div></div>
+      <div><div class="stat-n">60/40</div><div class="stat-l">Web / Mobile</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a class="nav-link active" href="#overview">Overview</a>
+    <a class="nav-link" href="#phase1">Phase 1</a>
+    <a class="nav-link" href="#phase2">Phase 2</a>
+    <a class="nav-link" href="#phase3">Phase 3</a>
+    <a class="nav-link" href="#tools">Tools</a>
+    <a class="nav-link" href="#summary">Summary</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="section-eyebrow">Course Structure</div>
+    <h2 class="section-title">Three Phases. Three Speakers. One Goal.</h2>
+    <p class="section-sub">From understanding how users think — to an independently built prototype, defended before a client.</p>
+
+    <div class="share-bar">
+      <span class="share-text">📋 Share this course with your manager or team — open the file in a browser.</span>
+      <button class="btn btn-light" onclick="window.print()">🖨 Print / PDF</button>
+      <button class="btn btn-dark" onclick="expandAll()">Expand All</button>
+    </div>
+
+    <div class="phases">
+      <div class="phase-row" onclick="location.href='#phase1'">
+        <div class="phase-dot" style="background:var(--p1)"></div>
+        <div class="phase-name">Phase 1 — Foundation</div>
+        <div class="phase-meta">Modules 01–04 · ~7 hrs</div>
+        <div class="phase-pill" style="background:var(--p1-light);color:var(--p1)">4 modules</div>
+      </div>
+      <div class="phase-row" onclick="location.href='#phase2'">
+        <div class="phase-dot" style="background:var(--p2)"></div>
+        <div class="phase-name">Phase 2 — Critical Perception</div>
+        <div class="phase-meta">Modules 05–06 · ~4 hrs</div>
+        <div class="phase-pill" style="background:var(--p2-light);color:var(--p2)">2 modules</div>
+      </div>
+      <div class="phase-row" onclick="location.href='#phase3'">
+        <div class="phase-dot" style="background:var(--p3)"></div>
+        <div class="phase-name">Phase 3 — AI Prototyping</div>
+        <div class="phase-meta">Modules 07–11 · ~10 hrs</div>
+        <div class="phase-pill" style="background:var(--p3-light);color:var(--p3)">5 modules</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 1 -->
+<section id="phase1">
+  <div class="container">
+    <div class="phase-section-head">
+      <span class="phase-section-label" style="color:var(--p1)">Phase 1</span>
+      <div class="phase-stripe" style="background:var(--p1)"></div>
+    </div>
+    <div class="section-eyebrow">4 modules · ~7 hours · lectures + workshops</div>
+    <h2 class="section-title">Foundation</h2>
+    <p class="section-sub">User psychology, interface anatomy (web and mobile 60/40), visual design language, and design systems.</p>
+
+    <div class="speaker-card">
+      <div class="speaker-av av1">UX</div>
+      <div class="speaker-info">
+        <div class="speaker-role">Phase 1 Speaker · UX Research & Strategy</div>
+        <div class="speaker-name">Name Surname</div>
+      </div>
+      <span class="badge b-theory speaker-phase-tag">Phase 1</span>
+    </div>
+
+    <!-- M01 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">01</div>
+        <div class="mod-info">
+          <div class="mod-title">How Users Think</div>
+          <div class="mod-desc">UX as behavioral logic. Mental models, jobs-to-be-done, user journey. The difference between stakeholder expectations and actual user needs.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">workshop</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: understand that UX is not about style or taste — it's about human behavioral logic. Learn to look at a product through the user's eyes, not the stakeholder's.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.1</span><span class="lesson-title">What is UX and How it Differs from UI</span></div>
+            <div class="lesson-why">Core definitions that build the right vocabulary. Without these, stakeholders will confuse "beautiful" with "convenient" — and those are very different things.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/definition-user-experience/" target="_blank">The Definition of User Experience — NN/g</a><span class="link-time">5 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/usability-101-introduction-to-usability/" target="_blank">Usability 101: Introduction to Usability — NN/g</a><span class="link-time">5 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/usability-101/" target="_blank">Usability 101 — NN/g</a><span class="link-time">4 min</span></div>
+            </div>
+            <div class="lesson-foot">~14 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.2</span><span class="lesson-title">Mental Models: Why Users "Don't Understand" the Interface</span></div>
+            <div class="lesson-why">A key concept in Human-Centered Design: people interact with a product through their expectations, not the developer's logic. This is the foundation for gathering the right requirements.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/mental-models/" target="_blank">Mental Models and User Experience Design — NN/g</a><span class="link-time">7 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/mental-models/" target="_blank">What is a Mental Model? — NN/g</a><span class="link-time">3 min</span></div>
+            </div>
+            <div class="lesson-foot">~10 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.3</span><span class="lesson-title">User Journey Map: The Path from Task to Result</span></div>
+            <div class="lesson-why">A tool stakeholders can start using right away when gathering requirements. Helps document the full user journey and identify gaps in client requirements.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/journey-mapping-101/" target="_blank">Journey Mapping 101 — NN/g</a><span class="link-time">6 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/journey-mapping-101/" target="_blank">Customer Journey Mapping 101 — NN/g</a><span class="link-time">5 min</span></div>
+            </div>
+            <div class="lesson-foot">~11 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.4</span><span class="lesson-title">Human-Centered Design: The Approach Behind Everything</span></div>
+            <div class="lesson-why">Design Thinking and HCD are frameworks that underpin modern UX practice. Stakeholders who understand this approach structure requirements gathering and idea validation far more effectively.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-thinking/" target="_blank">Design Thinking 101 — NN/g</a><span class="link-time">6 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.youtube.com/watch?v=_r0VX-aU_T8" target="_blank">What is Human-Centered Design? — IDEO</a><span class="link-time">4 min</span></div>
+            </div>
+            <div class="lesson-foot">~10 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">In-Class Workshop</div>
+          <div class="practice-text">The speaker works with the group to build a user journey map for one of the participants' real projects. Each stakeholder documents their product's user steps, expectations, and pain points. Group discussion follows. Time: ~30 min within the session.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I understand the difference between UX and UI. I know what a mental model is. I can build a basic user journey map for my own projects.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M02 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">02</div>
+        <div class="mod-info">
+          <div class="mod-title">Interface Anatomy: Web and Mobile <span class="badge b-up" style="font-size:9px;margin-left:6px">mobile expanded</span></div>
+          <div class="mod-desc">Screen zones, UI patterns, navigation. Deep mobile block: touch targets, thumb zone, safe areas, gestures, iOS vs Android. Responsive vs adaptive. Web/mobile — 60/40.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">case analysis</span>
+            <span class="b-time">120 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: learn to "read" any screen by its zones, recognize UI patterns, and understand the key differences between web and mobile — in both theory and prototyping practice.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.1</span><span class="lesson-title">Screen Structure: Zones, Elements, Patterns</span></div>
+            <div class="lesson-why">Every interface is a set of common zones and components. Being able to recognize them lets you quickly map client requirements to screen structures.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-pattern-guidelines-study-guide/" target="_blank">Design-Pattern Guidelines: Study Guide — NN/g</a><span class="link-time">6 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/web-ux-study-guide/" target="_blank">Web UX: Study Guide — NN/g</a><span class="link-time">8 min</span></div>
+            </div>
+            <div class="lesson-foot">~14 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.2</span><span class="lesson-title">Mobile UX: Why Mobile Is Not a Shrunken Web</span></div>
+            <div class="lesson-why">Mobile has its own interaction logic. The thumb zone, touch targets of at least 44px, safe areas, gesture navigation — all of these fundamentally change the design approach.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/mobile-ux-study-guide/" target="_blank">Mobile UX: Study Guide — NN/g</a><span class="link-time">10 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/touch-target-size/" target="_blank">Touch Targets on Touchscreens — NN/g</a><span class="link-time">6 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/state-mobile-ux/" target="_blank">The State of Mobile User Experience — NN/g</a><span class="link-time">7 min</span></div>
+            </div>
+            <div class="lesson-foot">~23 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.3</span><span class="lesson-title">Mobile Navigation Patterns and iOS vs Android</span></div>
+            <div class="lesson-why">Tab bar, bottom navigation, hamburger, navigation hub — each pattern has its own logic. iOS and Android have different conventions that stakeholders must distinguish when gathering requirements.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/mobile-navigation-patterns/" target="_blank">Basic Patterns for Mobile Navigation — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://developer.apple.com/design/human-interface-guidelines/designing-for-ios" target="_blank">Designing for iOS — Apple HIG</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://m3.material.io/foundations" target="_blank">Material 3 Foundations — Google Material Design</a><span class="link-time">8 min</span></div>
+            </div>
+            <div class="lesson-foot">~24 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.4</span><span class="lesson-title">Responsive vs Adaptive: How One Product Lives Across Different Screens</span></div>
+            <div class="lesson-why">Critical for stakeholders gathering requirements for products that must work on both web and mobile. This impacts requirements, not just design.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/mobile-first-not-mobile-only/" target="_blank">Mobile First Is NOT Mobile Only — NN/g</a><span class="link-time">7 min</span></div>
+            </div>
+            <div class="lesson-foot">~7 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">In-Class Case Analysis</div>
+          <div class="practice-text">The speaker takes one real product (e.g. a banking app) and analyzes it first in web, then in mobile: which zones, which patterns, where are the iOS vs Android differences. Each participant repeats the analysis using their own example.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I can break down web and mobile screens into functional zones. I know the key mobile patterns and iOS/Android differences. I understand what responsive and adaptive mean.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M03 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">03</div>
+        <div class="mod-info">
+          <div class="mod-title">The Visual Language of Design</div>
+          <div class="mod-desc">Hierarchy, typography, color, grid, spacing. Gestalt principles. How to tell quality from poor design — through real web and mobile examples.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">screen audit</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: build a concrete vocabulary and criteria for evaluating UI quality. After this, stakeholders can talk about design using facts, not feelings.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">3.1</span><span class="lesson-title">5 Principles of Visual Design in UX</span></div>
+            <div class="lesson-why">Scale, hierarchy, balance, contrast, Gestalt — fundamental principles that explain why some interfaces look good and others don't. The essential vocabulary for evaluating AI prototypes.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/principles-visual-design/" target="_blank">5 Principles of Visual Design in UX — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/visual-hierarchy/" target="_blank">Visual Hierarchy — NN/g</a><span class="link-time">3 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/the-gestalt-principles-intro/" target="_blank">The Gestalt Principles for UI Design — NN/g</a><span class="link-time">4 min</span></div>
+            </div>
+            <div class="lesson-foot">~15 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">3.2</span><span class="lesson-title">Visual Hierarchy: Why the Eye Goes Where It Should</span></div>
+            <div class="lesson-why">A detailed breakdown of hierarchy through size, color, spacing, and contrast. The most important tool for checking any screen's quality — and the most common failure in AI prototypes.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/visual-hierarchy-ux-definition/" target="_blank">Visual Hierarchy in UX: Definition — NN/g</a><span class="link-time">7 min</span></div>
+            </div>
+            <div class="lesson-foot">~7 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">3.3</span><span class="lesson-title">Typography, Color, Grid: A Practical Breakdown Using Real Products</span></div>
+            <div class="lesson-why">What a type system is, why you need an 8px grid, how color communicates status and hierarchy — analyzed through real products like Spotify, Medium, and Dovetail. For mobile: Dynamic Type, density, safe zones.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/why-does-design-look-good/" target="_blank">Why Does a Design Look Good? — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/why-does-a-design-look-good-part2/" target="_blank">The Anatomy of a Good Design — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/visual-design-in-ux-study-guide/" target="_blank">Visual Design in UX: Study Guide — NN/g</a><span class="link-time">10 min</span></div>
+            </div>
+            <div class="lesson-foot">~26 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">In-Class Audit</div>
+          <div class="practice-text">Each participant receives a screenshot of a real product (web and mobile). They conduct a mini-audit using the criteria: hierarchy, typography, color, spacing, and patterns. The speaker reviews errors and explains the terminology.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I know the 5 principles of visual design. I can describe an interface problem using specific terms. I have a vocabulary to talk with designers.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M04 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">04</div>
+        <div class="mod-info">
+          <div class="mod-title">Design Systems: Components, Tokens, How to Read Them <span class="badge b-new" style="font-size:9px;margin-left:6px">new</span></div>
+          <div class="mod-desc">What a design system is and why it matters to stakeholders. Components, tokens, styles. How to read a Figma library. Analysis of real systems: Material 3, Apple HIG, Atlassian.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">Figma file walkthrough</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: understand what a design system is and how it affects requirements and prototyping. Stakeholders should be able to "read" a design system — like a shared dictionary for talking with the design team.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">4.1</span><span class="lesson-title">What a Design System Is and Why Stakeholders Need It</span></div>
+            <div class="lesson-why">A design system is not just a set of components. It's the language designers and developers use to communicate. A stakeholder who understands this language formulates requirements more precisely and avoids misunderstandings.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Design Systems 101 — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-systems-vs-style-guides/" target="_blank">Design Systems vs. Style Guides — NN/g</a><span class="link-time">7 min</span></div>
+            </div>
+            <div class="lesson-foot">~15 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">4.2</span><span class="lesson-title">Components, Tokens, Patterns: Core Terminology</span></div>
+            <div class="lesson-why">A button is a component. #2E28A0 is a color token. A login form is a pattern. Knowing these terms lets stakeholders give precise requirements like "use the standard button component, not a custom one."</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/front-end-style-guides/" target="_blank">Front-End Style Guides: Definition, Requirements — NN/g</a><span class="link-time">8 min</span></div>
+            </div>
+            <div class="lesson-foot">~8 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">4.3</span><span class="lesson-title">Industry Design Systems: Material 3, Apple HIG, Atlassian</span></div>
+            <div class="lesson-why">Three major systems that set standards for most products. A stakeholder familiar with these better understands why a designer proposes a certain approach — and can assess whether an AI prototype meets the standard.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">resource</span><a href="https://m3.material.io/" target="_blank">Material Design 3 — Google (web + mobile)</a><span class="link-time">overview 15 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">resource</span><a href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">Human Interface Guidelines — Apple (mobile)</a><span class="link-time">overview 15 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">resource</span><a href="https://atlassian.design/" target="_blank">Atlassian Design System (web SaaS)</a><span class="link-time">overview 10 min</span></div>
+            </div>
+            <div class="lesson-foot">~40 min (overview of three systems)</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Figma File Walkthrough In Class</div>
+          <div class="practice-text">The speaker opens a public Figma library (e.g. the Material Design 3 Figma Kit or Atlassian) and demonstrates: where components are, where tokens are, and how they're applied to screens. Participants navigate the real file themselves.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I understand what a design system, component, token, and pattern are. I can open a Figma library and find the right component. I know the three industry standards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 -->
+<section id="phase2">
+  <div class="container">
+    <div class="phase-section-head">
+      <span class="phase-section-label" style="color:var(--p2)">Phase 2</span>
+      <div class="phase-stripe" style="background:var(--p2)"></div>
+    </div>
+    <div class="section-eyebrow">2 modules · ~4 hours · lectures + audits</div>
+    <h2 class="section-title">Critical Perception</h2>
+    <p class="section-sub">Nielsen's heuristics, cognitive load, modern trends, and common errors in AI-generated design.</p>
+
+    <div class="speaker-card">
+      <div class="speaker-av av2">DS</div>
+      <div class="speaker-info">
+        <div class="speaker-role">Phase 2 Speaker · UI Design & Quality Review</div>
+        <div class="speaker-name">Name Surname</div>
+      </div>
+      <span class="badge b-practice speaker-phase-tag">Phase 2</span>
+    </div>
+
+    <!-- M05 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">05</div>
+        <div class="mod-info">
+          <div class="mod-title">Nielsen's 10 Heuristics and Cognitive Load</div>
+          <div class="mod-desc">The canonical industry standard + Laws of UX. Filling out the Heuristic Evaluation Workbook together with the speaker on real web and mobile cases.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">workbook practice</span>
+            <span class="b-time">120 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: internalize a proven industry standard. After this, stakeholders can conduct quick heuristic analyses and argue problems using specific principles, not intuition.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.1</span><span class="lesson-title">Nielsen's 10 Heuristics — The Canonical Text</span></div>
+            <div class="lesson-why">The primary source you read once and know forever. Written in 1994, still fully relevant — that's the hallmark of a fundamental principle.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ten-usability-heuristics/" target="_blank">10 Usability Heuristics for User Interface Design — NN/g, Jakob Nielsen</a><span class="link-time">6 min</span></div>
+            </div>
+            <div class="lesson-foot">~6 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.2</span><span class="lesson-title">How to Conduct a Heuristic Evaluation + Free Workbook</span></div>
+            <div class="lesson-why">Article + free workbook from NN/g. Stakeholders get a concrete tool they can use immediately — for analyzing client requirements or an AI prototype.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/" target="_blank">How to Conduct a Heuristic Evaluation — NN/g</a><span class="link-time">11 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-doc">workbook</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g</a><span class="link-time">PDF</span></div>
+            </div>
+            <div class="lesson-foot">~11 min + tool</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.3</span><span class="lesson-title">Cognitive Load: Why "Too Much" Breaks UX</span></div>
+            <div class="lesson-why">One of the most important concepts in UX psychology. Explains why overloaded screens don't work. Especially relevant for mobile — less space, often more information.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank">Minimize Cognitive Load to Maximize Usability — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/cognitive-load/" target="_blank">What Is Cognitive Load? — NN/g</a><span class="link-time">3 min</span></div>
+            </div>
+            <div class="lesson-foot">~11 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.4</span><span class="lesson-title">Laws of UX — Psychological Laws in Design</span></div>
+            <div class="lesson-why">A collection of 21 laws: Jakob's Law, Fitts's Law, Hick's Law, and more. Each is a card with an explanation and example. Especially useful for mobile — Fitts's Law directly explains touch target sizes.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-tool">resource</span><a href="https://lawsofux.com/" target="_blank">Laws of UX — lawsofux.com (21 laws, free)</a><span class="link-time">20–30 min</span></div>
+            </div>
+            <div class="lesson-foot">~20–30 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">In-Class Workbook Practice</div>
+          <div class="practice-text">The speaker works through the Heuristic Evaluation Workbook with the group on one real product — first the web version, then mobile. Participants see how the same heuristics manifest differently across platforms.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I know all 10 heuristics and can apply them to any screen. I understand cognitive load. I have a completed workbook as my first heuristic audit.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M06 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">06</div>
+        <div class="mod-info">
+          <div class="mod-title">Modern Trends vs Timeless Principles</div>
+          <div class="mod-desc">State of UX 2026. AI as a new UI paradigm. Where AI-generated design looks right but breaks UX. Comparative audit of two products — web and mobile.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">comparative audit</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: learn to distinguish what "looks modern" from what "works correctly." Understand where AI tools generate trendy but problematic solutions.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.1</span><span class="lesson-title">State of UX 2026: Where the Industry Is Heading</span></div>
+            <div class="lesson-why">NN/g's annual overview — state of the industry, key challenges, the role of AI in design. Gives stakeholders context: why UX quality is becoming more important, not less, in the age of AI generation.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/state-of-ux-2026/" target="_blank">State of UX 2026: Design Deeper to Differentiate — NN/g</a><span class="link-time">12 min</span></div>
+            </div>
+            <div class="lesson-foot">~12 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.2</span><span class="lesson-title">AI as a New UX Paradigm: What It Means for Interfaces</span></div>
+            <div class="lesson-why">Jakob Nielsen's article on how AI is changing the core principles of human-computer interaction. Helps stakeholders better evaluate not only prototypes, but also client requirements for AI features in products.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ai-paradigm/" target="_blank">AI: First New UI Paradigm in 60 Years — NN/g, Jakob Nielsen</a><span class="link-time">10 min</span></div>
+            </div>
+            <div class="lesson-foot">~10 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.3</span><span class="lesson-title">Where AI Design Looks Right But Breaks UX</span></div>
+            <div class="lesson-why">Two materials: a general analysis of AI tools' weak spots in design, plus the "handmade design" phenomenon as a trust signal. Directly answers: "how do you know when AI did it badly?"</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ux-reset-2025/" target="_blank">The UX Reckoning: Prepare for 2025 and Beyond — NN/g</a><span class="link-time">10 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/handmade-designs/" target="_blank">Handmade Designs: The New Trust Signal — NN/g (2025)</a><span class="link-time">6 min</span></div>
+            </div>
+            <div class="lesson-foot">~16 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.4</span><span class="lesson-title">Analyzing Quality Designs: Seeing Why They Work</span></div>
+            <div class="lesson-why">Returning to NN/g analytical materials — but now with a new focus: understanding not just "what was done" but "why it follows the principles." Prepares the eye for validation practice in Phase 3.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/visual-design-in-ux-study-guide/" target="_blank">Visual Design in UX: Study Guide — NN/g (Testing section)</a><span class="link-time">8 min</span></div>
+            </div>
+            <div class="lesson-foot">~8 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Comparative Audit In Class</div>
+          <div class="practice-text">The speaker takes two similar products (e.g. two banking apps or two SaaS dashboards). For each: breakdown of trends, which heuristics are met or violated, where cognitive load appears, how the mobile version is handled. Conclusion: which is better and why — with arguments, not feelings.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Phase 2 Outcome</div>
+          <div class="outcome-text">I can evaluate an interface using heuristics and argue problems. I know where AI most commonly makes mistakes. I'm ready for hands-on prototyping in Phase 3.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 3 -->
+<section id="phase3">
+  <div class="container">
+    <div class="phase-section-head">
+      <span class="phase-section-label" style="color:var(--p3)">Phase 3</span>
+      <div class="phase-stripe" style="background:var(--p3)"></div>
+    </div>
+    <div class="section-eyebrow">5 modules · ~10 hours · live demos + practice</div>
+    <h2 class="section-title">AI Prototyping</h2>
+    <p class="section-sub">From prototype logic to defending requirements before a client — with 7 AI tools, with separate approaches for web and mobile.</p>
+
+    <div class="speaker-card">
+      <div class="speaker-av av3">AI</div>
+      <div class="speaker-info">
+        <div class="speaker-role">Phase 3 Speaker · AI Prototyping & Product Design</div>
+        <div class="speaker-name">Name Surname</div>
+      </div>
+      <span class="badge b-ai speaker-phase-tag">Phase 3</span>
+    </div>
+
+    <!-- M07 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">07</div>
+        <div class="mod-info">
+          <div class="mod-title">Prototype Logic: Lo-fi, Hi-fi, User Flow</div>
+          <div class="mod-desc">Levels of fidelity and when to use each. The difference between user journey and user flow. A minimum prototype for validation. Live demo with the speaker — web and mobile.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">lecture</span>
+            <span class="badge b-practice">demo + flow exercise</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: understand what a prototype is as a validation tool, what types exist, and when each is appropriate — separately for web and mobile contexts.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">7.1</span><span class="lesson-title">Lo-fi vs Hi-fi: Why "Expensive and Beautiful" Isn't Always Better</span></div>
+            <div class="lesson-why">A prototype is a question, not an answer. The level of fidelity depends on what you want to validate. For mobile, lo-fi is especially useful — you can sketch on paper and already get valuable feedback.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes: Low Fidelity vs. High Fidelity — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/tips-for-new-prototypers/" target="_blank">5 Tips for New Prototypers — NN/g</a><span class="link-time">3 min</span></div>
+            </div>
+            <div class="lesson-foot">~11 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">7.2</span><span class="lesson-title">User Flow vs User Journey: What a Prototype Must Cover</span></div>
+            <div class="lesson-why">A clear distinction between a journey map and a specific screen flow. Client requirements often describe a journey, while the prototype needs to show a flow. This gap is the source of most misunderstandings.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/user-journeys-vs-user-flows/" target="_blank">User Journeys vs. User Flows — NN/g</a><span class="link-time">5 min</span></div>
+            </div>
+            <div class="lesson-foot">~5 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">7.3</span><span class="lesson-title">How to Prepare a Prototype for Client Testing</span></div>
+            <div class="lesson-why">Practical principles: what to think through before showing a prototype. For mobile — special nuances: always show on a device, not on a laptop screen.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/prototyping-tool/" target="_blank">UX Prototyping: 5 Factors for Selecting the Right Tool — NN/g</a><span class="link-time">3 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/paper-prototyping/" target="_blank">Paper Prototyping: Getting User Data Before You Code — NN/g</a><span class="link-time">6 min</span></div>
+            </div>
+            <div class="lesson-foot">~9 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Live Demo + Flow Exercise In Class</div>
+          <div class="practice-text">The speaker live-demonstrates building a user flow for a real scenario — first as a sketch, then as a structured list of screens. Each participant builds their own flow for one of their projects. This forms the foundation for the prototype in module 09.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I understand the difference between lo-fi and hi-fi, and between user journey and user flow. I have a ready user flow to use in modules 08–09.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M08 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">08</div>
+        <div class="mod-info">
+          <div class="mod-title">From Stakeholder Requirements to Screens</div>
+          <div class="mod-desc">How to translate requirements into a structured prompt. A minimum prototype for validation. Iterating through AI chat. Different prompting approaches for web and mobile.</div>
+          <div class="mod-badges">
+            <span class="badge b-practice">practice</span>
+            <span class="badge b-ai">prompting</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: learn to translate raw client requirements into a prototype structure. The key stakeholder skill — not "make it look nice," but correctly capture an idea in a format ready for validation.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">8.1</span><span class="lesson-title">How to Write Prompts for AI Prototyping</span></div>
+            <div class="lesson-why">Prompt quality = prototype quality. A stakeholder who can clearly articulate context, target audience, scenario, and constraints gets significantly better results from any AI tool.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://stormy.ai/blog/how-to-use-v0-dev-ai-web-development-guide" target="_blank">How to Write Effective Prompts for AI UI Tools — Stormy AI</a><span class="link-time">10 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-doc">template</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">Prompt Structure: goal → user → screens → features — Lovable Docs</a><span class="link-time">5 min</span></div>
+            </div>
+            <div class="lesson-foot">~15 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">8.2</span><span class="lesson-title">Prompting for Mobile: Specifics and Differences from Web</span></div>
+            <div class="lesson-why">A mobile prototype requires a different prompt: you must explicitly specify the platform (iOS/Android), navigation type (tab bar / bottom nav), and touch element sizes. Without this, AI generates a web interface with a smaller font.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-d">practice</span><a href="https://stitch.withgoogle.com/" target="_blank">Google Stitch — try the same prompt for web and mobile, compare results</a><span class="link-time">20 min</span></div>
+            </div>
+            <div class="lesson-foot">~20 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">8.3</span><span class="lesson-title">Iteration: How to Refine a Prototype Through AI Chat</span></div>
+            <div class="lesson-why">AI prototyping is a dialogue, not a one-shot request. The first result is almost never final. Iterative refinement techniques: how to give feedback to AI, when to start over, when to edit.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://uxdesign.cc/getting-started-with-lovable-the-no-hype-beginner-tips-to-building-with-ai-36460d46249d" target="_blank">No-Hype Tips: How to Iterate in Lovable — UX Collective</a><span class="link-time">7 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/case-study-iterative-design-prototyping/" target="_blank">Case Study: Iterative Design and Prototype Testing — NN/g</a><span class="link-time">8 min</span></div>
+            </div>
+            <div class="lesson-foot">~15 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">In-Class Practice</div>
+          <div class="practice-text">Each participant converts real requirements from their project into a structured prompt using the schema: context → platform (web/mobile) → user → scenario → key screens → constraints. The speaker gives feedback and shows how to iterate the result.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I can translate requirements into a structured prompt for web and mobile. I know how to iterate a prototype through chat. I have a real prototype from my own project.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M09 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">09</div>
+        <div class="mod-info">
+          <div class="mod-title">7 AI Tools: Overview, Demo, First Launch <span class="badge b-up" style="font-size:9px;margin-left:6px">expanded</span></div>
+          <div class="mod-desc">Google Stitch · Claude Design · Figma Make · Lovable · v0 — UI prototyping. Claude Code · Cursor — AI development (for awareness). Live demo of each. Mobile specifics.</div>
+          <div class="mod-badges">
+            <span class="badge b-ai">AI tools</span>
+            <span class="badge b-practice">live demo</span>
+            <span class="b-time">120 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: understand what each tool is best suited for and gain first-hand practical experience with each, guided by the speaker.</div>
+
+        <div style="margin: 16px 0 12px; font-size: 12px; font-weight: 600; color: var(--p1); text-transform: uppercase; letter-spacing: .07em;">UI Prototyping (stakeholder uses independently)</div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Mobile</div>
+            <div class="tool-name">Google Stitch</div>
+            <div class="tool-desc">Fastest start. Text → mobile in 90 sec. Gemini 2.5 Pro.</div>
+            <div class="tool-free">✓ Free</div>
+            <a class="tool-link" href="https://stitch.withgoogle.com/" target="_blank">stitch.withgoogle.com →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Concepts</div>
+            <div class="tool-name">Claude Design</div>
+            <div class="tool-desc">UX consultant and UI concept generator. Best paired with other tools.</div>
+            <div class="tool-free">✓ Free</div>
+            <a class="tool-link" href="https://claude.ai/design" target="_blank">claude.ai/design →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Interactive</div>
+            <div class="tool-name">Figma Make</div>
+            <div class="tool-desc">Interactive prototype with navigation. Web and mobile. Closest to a real product.</div>
+            <div class="tool-free">✓ Starter plan</div>
+            <a class="tool-link" href="https://www.figma.com/make/" target="_blank">figma.com/make →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Demo</div>
+            <div class="tool-name">Lovable</div>
+            <div class="tool-desc">Live web app for client demos. Real front-end code.</div>
+            <div class="tool-free">✓ 5 credits/day</div>
+            <a class="tool-link" href="https://lovable.dev/" target="_blank">lovable.dev →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Components</div>
+            <div class="tool-name">v0 (Vercel)</div>
+            <div class="tool-desc">Precise UI components in React/Tailwind. For specific elements.</div>
+            <div class="tool-free">✓ Free tier</div>
+            <a class="tool-link" href="https://v0.dev/" target="_blank">v0.dev →</a>
+          </div>
+        </div>
+
+        <div style="margin: 20px 0 12px; font-size: 12px; font-weight: 600; color: var(--p3); text-transform: uppercase; letter-spacing: .07em;">AI Development (stakeholder understands, team uses)</div>
+        <div class="tool-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-dev">AI Dev · CLI</div>
+            <div class="tool-name">Claude Code</div>
+            <div class="tool-desc">AI agent for development via terminal. Generates, edits, and runs code. For stakeholders — know it for communicating with the dev team.</div>
+            <div class="tool-free">✓ Via claude.ai or API</div>
+            <a class="tool-link" href="https://claude.ai/code" target="_blank">docs.claude.ai/code →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-dev">AI Dev · IDE</div>
+            <div class="tool-name">Cursor</div>
+            <div class="tool-desc">AI code editor with chat. Lets developers generate and refactor code through natural language. For stakeholders — know what it is and when your team uses it.</div>
+            <div class="tool-free">✓ Free plan</div>
+            <a class="tool-link" href="https://www.cursor.com/" target="_blank">cursor.com →</a>
+          </div>
+        </div>
+
+        <ul class="lesson-list" style="margin-top: 16px">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.1</span><span class="lesson-title">Google Stitch: Step-by-Step Guide + Mobile Specifics</span></div>
+            <div class="lesson-why">Fastest start. Gemini 2.5 Pro, free. Perfect for a first mobile prototype — show a result in 2 minutes.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.codecademy.com/article/google-stitch-tutorial-ai-powered-ui-design-tool" target="_blank">Design Mobile App UI with Google Stitch — Codecademy</a><span class="link-time">15 min</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.2</span><span class="lesson-title">Claude Design: Generating UX Concepts and Analyzing Prototypes</span></div>
+            <div class="lesson-why">Claude Design is for when you want to discuss an idea, explore solution options, or get critique of a prototype. It doesn't draw pixels — it thinks alongside you. Best paired with Figma Make or Lovable.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-d">practice</span><a href="https://claude.ai/design" target="_blank">claude.ai/design — try the prompt: "I'm a stakeholder, here are client requirements: [paste]. Suggest a user flow structure for a mobile app"</a><span class="link-time">20 min</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.3</span><span class="lesson-title">Figma Make: Interactive Prototype with Screen Navigation</span></div>
+            <div class="lesson-why">Closest to a "real" product: clicks, transitions, actual behavior. Supports mobile frames. Ideal for client presentations.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.codecademy.com/article/figma-make-tutorial" target="_blank">Figma Make Tutorial — Codecademy</a><span class="link-time">15 min</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.4</span><span class="lesson-title">Lovable: A Full Web App for Client Demos</span></div>
+            <div class="lesson-why">Lovable is for when the client needs to "see how it will actually work," not just click through a mockup. Generates real front-end code with a shareable link.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://uxdesign.cc/getting-started-with-lovable-the-no-hype-beginner-tips-to-building-with-ai-36460d46249d" target="_blank">Getting Started with Lovable: No-Hype Tips — UX Collective</a><span class="link-time">10 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-doc">official docs</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">From Idea to Working App — Lovable Docs</a><span class="link-time">7 min</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.5</span><span class="lesson-title">v0: Precise UI Components from a Prompt</span></div>
+            <div class="lesson-why">v0 generates React/Tailwind components — tables, forms, cards, dashboards. Ideal when you need to show a specific UI element, not a full flow.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.datacamp.com/tutorial/vercel-v0" target="_blank">v0 by Vercel: A Guide With Demo Project — DataCamp</a><span class="link-time">12 min</span></div>
+            </div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Live Demo In Class</div>
+          <div class="practice-text">The speaker live-demos each UI tool (5×15 min): same scenario — "Mobile app for booking a service" — one prompt, five different results. Participants compare: speed, UI quality, mobile compliance. Then a brief demo of Claude Code and Cursor: "here's what a developer does when using these tools."</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I have hands-on experience with all 5 UI tools. I know when to use which one. I understand the difference between UI prototyping and AI development — and my role vs the developer's.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M10 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">10</div>
+        <div class="mod-info">
+          <div class="mod-title">Validating AI Concepts</div>
+          <div class="mod-desc">Common AI prototype errors — separately for web and mobile. Heuristic audit of your own prototype. Decision tree: what to redo, what to keep.</div>
+          <div class="mod-badges">
+            <span class="badge b-practice">practice</span>
+            <span class="badge b-ai">audit</span>
+            <span class="b-time">90 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: learn to independently check the quality of an AI prototype — before showing it to a client. The stakeholder becomes the first quality filter, not just a relay for AI output.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">10.1</span><span class="lesson-title">Common AI Prototype Errors: Web and Mobile Separately</span></div>
+            <div class="lesson-why">AI consistently repeats the same mistakes. On mobile: ignoring safe areas, too-small touch targets, copying web navigation. On web — information overload, broken hierarchy.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ux-reset-2025/" target="_blank">The UX Reckoning 2025: where AI tools still fall short — NN/g</a><span class="link-time">8 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank">Minimize Cognitive Load — NN/g (where AI overloads screens)</a><span class="link-time">5 min</span></div>
+            </div>
+            <div class="lesson-foot">~13 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">10.2</span><span class="lesson-title">Applying the Heuristics Workbook to Your Own Prototype</span></div>
+            <div class="lesson-why">Back to the workbook — but now applying it to a real AI prototype, not someone else's screenshot. This is the core skill of the course: being able to say "here's the problem, and here's why" in the language of principles.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-doc">workbook</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g: apply to your own prototype</a><span class="link-time">40 min</span></div>
+            </div>
+            <div class="lesson-foot">~40 min (practice)</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">10.3</span><span class="lesson-title">When to Redo the Prompt, When to Edit, When to Keep It</span></div>
+            <div class="lesson-why">Not every AI prototype issue is worth fixing. A practical decision tree: critical errors (break the logic) vs aesthetic ones (acceptable at lo-fi level).</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes — NN/g (section on "good enough prototype")</a><span class="link-time">4 min</span></div>
+            </div>
+            <div class="lesson-foot">~4 min</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">In-Class Audit</div>
+          <div class="practice-text">Each participant opens the prototype from module 08 and goes through the heuristic checklist — separately for web and mobile aspects. Finds at least 3 specific problems with arguments. The speaker reviews common errors across the group.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Module Outcome</div>
+          <div class="outcome-text">I can find typical AI prototype errors and argue them using principles — separately for web and mobile. I have experience conducting a heuristic audit of my own prototype.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M11 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">11</div>
+        <div class="mod-info">
+          <div class="mod-title">Prototype Defense of Requirements: Final Project</div>
+          <div class="mod-desc">Full cycle: requirements → journey map → AI prototype → heuristic audit → client presentation scenario. Defense before the group, speaker feedback.</div>
+          <div class="mod-badges">
+            <span class="badge b-practice">final project</span>
+            <span class="badge b-practice">defense</span>
+            <span class="b-time">120 min</span>
+          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Goal: complete the full stakeholder cycle — from requirements to prototype — and defend it before the group. This is the outcome of the entire course.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">11.1</span><span class="lesson-title">How to Present a Prototype to a Client: What to Say and What Not to Say</span></div>
+            <div class="lesson-why">A prototype is a question, not an answer. The right technique: not "here's what we built," but "help us validate this." For mobile — always show on a real device.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/usability-testing-101/" target="_blank">Usability Testing 101 — NN/g</a><span class="link-time">7 min</span></div>
+            </div>
+            <div class="lesson-foot">~7 min</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">11.2</span><span class="lesson-title">Documenting Decisions After a Client Session</span></div>
+            <div class="lesson-why">After showing the prototype, the client gives feedback. How to properly document it: what to change in requirements, what to validate in the next iteration — this closes the loop between prototype and specification.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/analyze-customer-journey-map/" target="_blank">7 Ways to Analyze a Customer Journey Map — NN/g</a><span class="link-time">7 min</span></div>
+            </div>
+            <div class="lesson-foot">~7 min</div>
+          </li>
+        </ul>
+        <div class="practice-box" style="background:var(--p1-light);border-color:var(--p1)">
+          <div class="practice-label" style="color:var(--p1)">🎯 Final Project — Group Defense</div>
+          <div class="practice-text">Full stakeholder cycle:<br><br>
+            1. Take a real or fictional client request (1 paragraph of requirements)<br>
+            2. Build a user journey map<br>
+            3. Choose an AI tool and generate a prototype (3–5 screens) — web or mobile<br>
+            4. Conduct a heuristic audit using the NN/g workbook<br>
+            5. Prepare a presentation scenario: 3 questions you want to validate with the client<br>
+            6. Defend before the group (5 min) — speaker and participants give feedback<br><br>
+            Evaluation: is there a clear user flow, does the prototype meet requirements, did the audit reveal real problems.
+          </div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Course Outcome</div>
+          <div class="outcome-text">Completed the full cycle: requirements → journey → prototype (web or mobile) → heuristic audit → client validation. I have practical tools and an understanding of quality UX principles.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="section-eyebrow">Module 09</div>
+    <h2 class="section-title">7 AI Tools in the Course</h2>
+    <p class="section-sub">5 for UI prototyping (stakeholder uses independently) + 2 for understanding AI development.</p>
+    <div class="summary-grid">
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Mobile</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Google Stitch</div><a href="https://stitch.withgoogle.com/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">stitch.withgoogle.com →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Concepts</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Claude Design</div><a href="https://claude.ai/design" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">claude.ai/design →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Interactive</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Figma Make</div><a href="https://www.figma.com/make/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">figma.com/make →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Live Demo</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Lovable</div><a href="https://lovable.dev/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">lovable.dev →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Components</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">v0 (Vercel)</div><a href="https://v0.dev/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">v0.dev →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">AI Dev</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Claude Code</div><a href="https://claude.ai/code" target="_blank" style="font-size:12px;color:var(--p3);text-decoration:none">docs.claude.ai/code →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">AI Dev</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Cursor</div><a href="https://www.cursor.com/" target="_blank" style="font-size:12px;color:var(--p3);text-decoration:none">cursor.com →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section id="summary">
+  <div class="container">
+    <div class="section-eyebrow">Course Summary</div>
+    <h2 class="section-title">What Stakeholders Can Do After the Course</h2>
+    <p class="section-sub">The full cycle from requirements to a validated prototype — independently, without a designer at every step.</p>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="summary-n" style="color:var(--p1)">~21</div><div class="summary-l">Hours of learning</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p2)">11</div><div class="summary-l">Modules</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p3)">3</div><div class="summary-l">Speakers by phase</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--text)">7</div><div class="summary-l">AI tools</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p2)">60/40</div><div class="summary-l">Web / Mobile</div></div>
+    </div>
+
+    <div style="margin-top:20px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r)">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--subtle);margin-bottom:14px">Skills After the Course</div>
+      <div class="skills-list">
+        <div class="skill-item"><span class="skill-num" style="background:var(--p1)">1</span><span class="skill-text">Reads and critiques any web or mobile interface using the language of principles — heuristics, hierarchy, cognitive load, mobile specifics</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p1)">2</span><span class="skill-text">Understands design systems: components, tokens, patterns — can read a Figma library and formulate precise requirements for the team</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p2)">3</span><span class="skill-text">Builds user journey maps and user flows from client requirements — separately for web and mobile contexts</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p2)">4</span><span class="skill-text">Chooses the right AI tool for the task and generates a prototype using a structured prompt — web or mobile</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p3)">5</span><span class="skill-text">Conducts a heuristic audit of a prototype and finds UX problems before showing the client — using arguments, not feelings</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p3)">6</span><span class="skill-text">Uses a prototype as a tool for validating requirements in conversation with a client or stakeholder — with the correct presentation technique</span></div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="badge b-theory">lecture</span>speaker-led</div>
+      <div class="legend-item"><span class="badge b-practice">practice / workshop</span>participants do</div>
+      <div class="legend-item"><span class="badge b-ai">AI tools</span>live demo and practice</div>
+      <div class="legend-item"><span class="badge b-new">new</span>new module in v3.0</div>
+      <div class="legend-item"><span class="badge b-up">↑ updated</span>significantly expanded</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <strong>UI/UX Design and AI Prototyping for Stakeholders</strong><br>
+  Instructor-Led Course · Version 3.0 · 2025–2026<br>
+  Primary source materials: <a href="https://www.nngroup.com/" target="_blank" style="color:rgba(245,241,235,.4)">Nielsen Norman Group (nngroup.com)</a>
+</footer>
+
+<script>
+function toggleModule(card) {
+  const body = card.querySelector('.module-body');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  card.classList.toggle('open', !isOpen);
+}
+
+function expandAll() {
+  document.querySelectorAll('.module-body').forEach(b => b.classList.add('open'));
+  document.querySelectorAll('.module-card').forEach(c => c.classList.add('open'));
+}
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id');
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
