@@ -3,338 +3,372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UI/UX та АІ-прототипування — Навчальний курс для БА</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<title>UI/UX та АІ-прототипування — Навчальний курс</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --c-bg: #F7F4EF;
-    --c-surface: #FFFFFF;
-    --c-border: #E2DCCF;
-    --c-text: #1A1714;
-    --c-muted: #7A7065;
-    --c-phase1: #3B32A8;
-    --c-phase1-light: #EEEDFC;
-    --c-phase2: #1A7A59;
-    --c-phase2-light: #E3F5EE;
-    --c-phase3: #B36012;
-    --c-phase3-light: #FBF0E2;
-    --c-theory: #3B32A8;
-    --c-practice: #1A7A59;
-    --c-ai: #B36012;
-    --font-display: 'DM Serif Display', Georgia, serif;
-    --font-body: 'DM Sans', system-ui, sans-serif;
-  }
+:root {
+  --bg: #F5F1EB;
+  --surface: #FFFFFF;
+  --border: #DDD7CC;
+  --border-light: #EAE5DC;
+  --text: #1C1814;
+  --muted: #78706A;
+  --subtle: #A89F98;
+  --p1: #2E28A0;
+  --p1-light: #ECEBF9;
+  --p2: #156048;
+  --p2-light: #E2F4EE;
+  --p3: #A85410;
+  --p3-light: #FAF0E4;
+  --new: #7C3E0A;
+  --new-light: #FEF3E2;
+  --up: #0A5472;
+  --up-light: #E1F4FB;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --r: 12px;
+  --r-sm: 6px;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+}
 
-  body {
-    background: var(--c-bg);
-    color: var(--c-text);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+/* ── HERO ── */
+.hero {
+  background: var(--text);
+  color: var(--bg);
+  padding: 80px 40px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -160px; right: -100px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46,40,160,.3) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 15%;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,84,16,.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(245,241,235,.45); margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 62px);
+  line-height: 1.08; letter-spacing: -.02em;
+  margin-bottom: 22px; font-weight: 400;
+}
+.hero-title em { font-style: italic; color: rgba(245,241,235,.55); }
+.hero-sub {
+  font-size: 16px; color: rgba(245,241,235,.65);
+  max-width: 540px; line-height: 1.7; margin-bottom: 48px;
+}
+.hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  border-top: 1px solid rgba(245,241,235,.12); padding-top: 32px;
+}
+.stat-n { font-family: var(--font-display); font-size: 34px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+.stat-l { font-size: 11px; color: rgba(245,241,235,.45); letter-spacing: .04em; }
 
-  /* HERO */
-  .hero {
-    background: var(--c-text);
-    color: var(--c-bg);
-    padding: 80px 40px 64px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -120px; right: -80px;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(59,50,168,0.35) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: 20%;
-    width: 320px; height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(179,96,18,0.25) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-    text-transform: uppercase; color: rgba(247,244,239,0.5);
-    margin-bottom: 20px;
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5vw, 58px);
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-  }
-  .hero-title em { font-style: italic; color: rgba(247,244,239,0.6); }
-  .hero-sub {
-    font-size: 16px; color: rgba(247,244,239,0.7);
-    max-width: 520px; line-height: 1.65; margin-bottom: 40px;
-  }
-  .hero-stats {
-    display: flex; gap: 40px; flex-wrap: wrap;
-    border-top: 1px solid rgba(247,244,239,0.15); padding-top: 32px;
-  }
-  .stat { }
-  .stat-n { font-family: var(--font-display); font-size: 32px; line-height: 1; margin-bottom: 4px; }
-  .stat-l { font-size: 12px; color: rgba(247,244,239,0.5); letter-spacing: 0.04em; }
+/* ── NAV ── */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,241,235,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center;
+  height: 52px; overflow-x: auto; gap: 0;
+}
+.nav-link {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  text-decoration: none; padding: 0 16px; height: 52px;
+  display: flex; align-items: center; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .18s, border-color .18s;
+}
+.nav-link:hover { color: var(--text); }
+.nav-link.active { color: var(--text); border-bottom-color: var(--text); }
 
-  /* MAIN LAYOUT */
-  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+/* ── LAYOUT ── */
+.container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+section { padding: 56px 0; }
+section + section { border-top: 1px solid var(--border); }
 
-  /* NAV */
-  .sticky-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(247,244,239,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--c-border);
-    padding: 0 32px;
-  }
-  .nav-inner {
-    max-width: 860px; margin: 0 auto;
-    display: flex; align-items: center; gap: 0;
-    height: 52px; overflow-x: auto;
-  }
-  .nav-link {
-    font-size: 13px; font-weight: 500; color: var(--c-muted);
-    text-decoration: none; padding: 0 18px; height: 52px;
-    display: flex; align-items: center; white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color .2s, border-color .2s;
-  }
-  .nav-link:hover { color: var(--c-text); }
-  .nav-link.active { color: var(--c-text); border-bottom-color: var(--c-text); }
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--subtle); margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-display); font-size: 30px;
+  font-weight: 400; line-height: 1.18; margin-bottom: 6px;
+}
+.section-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
 
-  /* SECTION */
-  section { padding: 56px 0; }
-  section + section { border-top: 1px solid var(--c-border); }
+/* ── OVERVIEW ── */
+.phases { display: flex; flex-direction: column; gap: 10px; }
+.phase-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--border);
+  cursor: pointer; transition: transform .14s;
+}
+.phase-row:hover { transform: translateX(4px); }
+.phase-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.phase-name { font-weight: 600; font-size: 15px; flex: 1; }
+.phase-meta { font-size: 12px; color: var(--muted); }
+.phase-pill {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px;
+}
 
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--c-muted); margin-bottom: 8px;
-  }
-  .section-title {
-    font-family: var(--font-display); font-size: 28px;
-    line-height: 1.2; margin-bottom: 6px;
-  }
-  .section-sub { font-size: 14px; color: var(--c-muted); margin-bottom: 32px; }
+/* ── SHARE BAR ── */
+.share-bar {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px; flex-wrap: wrap;
+}
+.share-text { font-size: 13px; color: var(--muted); flex: 1; }
+.btn {
+  font-size: 12px; font-weight: 600; padding: 8px 16px;
+  border-radius: 8px; border: none; cursor: pointer;
+  font-family: var(--font-body); transition: opacity .15s;
+}
+.btn:hover { opacity: .8; }
+.btn-dark { background: var(--text); color: var(--bg); }
+.btn-light { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
 
-  /* OVERVIEW PHASES */
-  .phases { display: flex; flex-direction: column; gap: 12px; }
-  .phase-row {
-    display: flex; align-items: center; gap: 16px;
-    padding: 18px 20px; border-radius: 12px;
-    background: var(--c-surface); border: 1px solid var(--c-border);
-    transition: transform .15s;
-  }
-  .phase-row:hover { transform: translateX(4px); }
-  .phase-dot {
-    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-  }
-  .phase-name { font-weight: 600; font-size: 15px; flex: 1; }
-  .phase-meta { font-size: 12px; color: var(--c-muted); }
-  .phase-count {
-    font-size: 12px; font-weight: 600; padding: 3px 10px;
-    border-radius: 20px;
-  }
+/* ── PHASE SECTION HEADER ── */
+.phase-section-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+.phase-stripe { height: 3px; border-radius: 2px; flex: 1; }
+.phase-section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; white-space: nowrap;
+}
 
-  /* MODULE CARDS */
-  .modules { display: flex; flex-direction: column; gap: 0; }
-  .module-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 14px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: box-shadow .2s;
-  }
-  .module-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
-  .module-head {
-    display: flex; align-items: flex-start; gap: 16px;
-    padding: 20px 24px; cursor: pointer;
-  }
-  .module-num {
-    font-family: var(--font-display); font-size: 22px;
-    color: var(--c-border); flex-shrink: 0; line-height: 1; padding-top: 2px;
-    min-width: 32px;
-  }
-  .module-info { flex: 1; }
-  .module-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-  .module-desc { font-size: 13px; color: var(--c-muted); line-height: 1.5; }
-  .module-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
-  .badge {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.05em;
-    padding: 3px 9px; border-radius: 4px; text-transform: uppercase;
-  }
-  .badge-theory { background: var(--c-phase1-light); color: var(--c-phase1); }
-  .badge-practice { background: var(--c-phase2-light); color: var(--c-phase2); }
-  .badge-ai { background: var(--c-phase3-light); color: var(--c-phase3); }
-  .badge-time {
-    font-size: 11px; font-weight: 500; color: var(--c-muted);
-    display: flex; align-items: center; gap: 4px;
-  }
-  .badge-time::before { content: '⏱'; font-size: 10px; }
+/* ── SPEAKER ROW ── */
+.speaker-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: var(--r);
+  border: 1px solid var(--border);
+  background: var(--surface); margin-bottom: 16px;
+}
+.speaker-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.av1 { background: linear-gradient(135deg, #2E28A0, #6B5CE7); }
+.av2 { background: linear-gradient(135deg, #156048, #2AB87B); }
+.av3 { background: linear-gradient(135deg, #A85410, #E8891A); }
+.speaker-info { flex: 1; }
+.speaker-role { font-size: 11px; color: var(--subtle); }
+.speaker-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.speaker-phase-tag {
+  font-size: 10px; font-weight: 600; padding: 2px 8px;
+  border-radius: 3px; text-transform: uppercase; letter-spacing: .05em;
+}
 
-  /* MENTOR BADGE */
-  .mentor-badge {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: var(--c-bg); border: 1px solid var(--c-border);
-    border-radius: 20px; padding: 3px 10px 3px 6px;
-    font-size: 11px; color: var(--c-muted); font-weight: 500;
-  }
-  .mentor-avatar {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--c-phase1), var(--c-phase3));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; font-weight: 700; color: white; flex-shrink: 0;
-    font-family: var(--font-body);
-  }
+/* ── MODULE CARD ── */
+.module-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: box-shadow .18s;
+}
+.module-card:hover { box-shadow: 0 3px 20px rgba(0,0,0,.055); }
+.module-head {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 22px; cursor: pointer;
+}
+.mod-num {
+  font-family: var(--font-display); font-size: 20px; font-weight: 300;
+  color: var(--border); flex-shrink: 0; line-height: 1.1;
+  padding-top: 2px; min-width: 30px;
+}
+.mod-info { flex: 1; }
+.mod-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+.mod-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+.mod-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.badge {
+  font-size: 10px; font-weight: 600; letter-spacing: .05em;
+  padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+}
+.b-theory  { background: var(--p1-light); color: var(--p1); }
+.b-practice{ background: var(--p2-light); color: var(--p2); }
+.b-ai      { background: var(--p3-light); color: var(--p3); }
+.b-new     { background: var(--new-light); color: var(--new); border: .5px solid #F5C28A; }
+.b-up      { background: var(--up-light); color: var(--up); border: .5px solid #7EC8E3; }
+.b-time {
+  font-size: 11px; font-weight: 500; color: var(--subtle);
+  display: flex; align-items: center; gap: 3px; margin-left: auto;
+}
+.b-time::before { content: '⏱'; font-size: 10px; }
+.toggle-arrow {
+  font-size: 15px; color: var(--subtle); flex-shrink: 0;
+  padding-top: 3px; transition: transform .2s;
+}
+.module-card.open .toggle-arrow { transform: rotate(180deg); }
 
-  /* MODULE BODY (expandable) */
-  .module-body {
-    display: none;
-    padding: 0 24px 20px 72px;
-    border-top: 1px solid var(--c-border);
-  }
-  .module-body.open { display: block; }
-  .module-goal {
-    font-size: 13px; color: var(--c-muted); line-height: 1.6;
-    padding: 14px 16px; margin: 16px 0;
-    border-left: 3px solid var(--c-border);
-    background: var(--c-bg); border-radius: 0 8px 8px 0;
-  }
+/* ── MODULE BODY ── */
+.module-body {
+  display: none; padding: 0 22px 20px 68px;
+  border-top: 1px solid var(--border-light);
+}
+.module-body.open { display: block; }
+.mod-goal {
+  font-size: 13px; color: var(--muted); line-height: 1.65;
+  padding: 12px 16px; margin: 16px 0;
+  border-left: 3px solid var(--border);
+  background: var(--bg); border-radius: 0 8px 8px 0;
+}
 
-  .lesson-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-  .lesson-item { }
-  .lesson-num-title { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
-  .lesson-num { font-size: 11px; font-weight: 600; color: var(--c-muted); min-width: 28px; padding-top: 1px; }
-  .lesson-title-text { font-size: 13px; font-weight: 600; }
-  .lesson-links { padding-left: 38px; display: flex; flex-direction: column; gap: 5px; }
-  .lesson-link { display: flex; align-items: flex-start; gap: 8px; }
-  .link-type {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
-    padding: 2px 6px; border-radius: 3px; white-space: nowrap;
-    flex-shrink: 0; margin-top: 2px; text-transform: uppercase;
-  }
-  .lt-article { background: #E3EEF9; color: #0C4480; }
-  .lt-video { background: var(--c-phase2-light); color: var(--c-phase2); }
-  .lt-practice { background: var(--c-phase3-light); color: var(--c-phase3); }
-  .lt-doc { background: #FDE8E2; color: #7A2010; }
-  .lt-tool { background: #F3F0FB; color: #4A3DA8; }
-  .lesson-link a {
-    font-size: 12px; color: #3B32A8; text-decoration: none; line-height: 1.5;
-  }
-  .lesson-link a:hover { text-decoration: underline; }
-  .link-time { font-size: 11px; color: var(--c-muted); white-space: nowrap; flex-shrink: 0; padding-top: 2px; margin-left: auto; }
+/* ── LESSONS ── */
+.lesson-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.lesson-item { }
+.lesson-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 5px; }
+.lesson-n { font-size: 11px; font-weight: 600; color: var(--subtle); min-width: 28px; padding-top: 2px; }
+.lesson-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
+.lesson-why {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+  padding-left: 38px; margin-bottom: 8px;
+}
+.lesson-links { padding-left: 38px; display: flex; flex-direction: column; gap: 5px; }
+.lesson-link { display: flex; align-items: flex-start; gap: 8px; }
+.link-type {
+  font-size: 9px; font-weight: 700; letter-spacing: .06em;
+  padding: 2px 6px; border-radius: 3px; white-space: nowrap;
+  flex-shrink: 0; margin-top: 2px; text-transform: uppercase;
+}
+.lt-a  { background: #E3EEF9; color: #0C4480; }
+.lt-v  { background: var(--p2-light); color: var(--p2); }
+.lt-d  { background: var(--p3-light); color: var(--p3); }
+.lt-doc{ background: #FDE8E2; color: #7A2010; }
+.lt-tool{ background: #F3F0FB; color: #4A3DA8; }
+.lesson-link a { font-size: 12px; color: var(--p1); text-decoration: none; line-height: 1.5; }
+.lesson-link a:hover { text-decoration: underline; }
+.link-time { font-size: 11px; color: var(--subtle); white-space: nowrap; flex-shrink: 0; padding-top: 2px; margin-left: auto; }
+.lesson-divider { height: 1px; background: var(--border-light); margin: 4px 0 4px 38px; }
+.lesson-foot { padding-left: 38px; font-size: 11px; color: var(--subtle); margin-top: 4px; }
 
-  .lesson-divider { height: 1px; background: var(--c-border); margin: 4px 0 4px 38px; }
+/* ── BOXES ── */
+.practice-box {
+  margin-top: 18px; padding: 14px 16px;
+  background: var(--p3-light); border-radius: 10px;
+  border-left: 3px solid var(--p3);
+}
+.practice-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--p3); margin-bottom: 6px;
+}
+.practice-text { font-size: 12px; line-height: 1.65; color: var(--text); }
 
-  .practice-box {
-    margin-top: 18px; padding: 14px 16px;
-    background: var(--c-phase3-light); border-radius: 10px;
-    border-left: 3px solid var(--c-phase3);
-  }
-  .practice-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--c-phase3); margin-bottom: 6px;
-  }
-  .practice-text { font-size: 12px; line-height: 1.6; color: var(--c-text); }
+.outcome-box {
+  margin-top: 12px; padding: 12px 16px;
+  background: var(--bg); border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.outcome-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--subtle); margin-bottom: 5px;
+}
+.outcome-text { font-size: 12px; line-height: 1.55; color: var(--muted); }
 
-  .outcome-box {
-    margin-top: 14px; padding: 12px 16px;
-    background: var(--c-bg); border-radius: 10px;
-    border: 1px solid var(--c-border);
-  }
-  .outcome-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-muted); margin-bottom: 5px; }
-  .outcome-text { font-size: 12px; line-height: 1.55; color: var(--c-muted); }
+/* ── TOOL GRID ── */
+.tool-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px; margin: 14px 0;
+}
+.tool-card {
+  padding: 14px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+.tool-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.tool-desc { font-size: 11px; color: var(--muted); line-height: 1.45; margin-bottom: 8px; }
+.tool-cat { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.tool-cat-ui { color: var(--p1); }
+.tool-cat-dev { color: var(--p3); }
+.tool-free { font-size: 10px; color: var(--p2); font-weight: 600; margin-bottom: 4px; }
+.tool-link { font-size: 11px; color: var(--p1); text-decoration: none; }
+.tool-link:hover { text-decoration: underline; }
 
-  /* TOOLS GRID */
-  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 14px 0; }
-  .tool-card {
-    padding: 14px; background: var(--c-bg); border: 1px solid var(--c-border);
-    border-radius: 10px;
-  }
-  .tool-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-  .tool-desc { font-size: 11px; color: var(--c-muted); line-height: 1.45; margin-bottom: 8px; }
-  .tool-link { font-size: 11px; color: var(--c-phase1); text-decoration: none; }
-  .tool-link:hover { text-decoration: underline; }
-  .tool-free { font-size: 10px; color: var(--c-phase2); font-weight: 600; }
+/* ── SUMMARY ── */
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+.summary-card {
+  padding: 20px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r);
+}
+.summary-n { font-family: var(--font-display); font-size: 36px; font-weight: 300; line-height: 1; margin-bottom: 6px; }
+.summary-l { font-size: 12px; color: var(--muted); }
 
-  /* SUMMARY */
-  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
-  .summary-card {
-    padding: 20px; background: var(--c-surface);
-    border: 1px solid var(--c-border); border-radius: 12px;
-  }
-  .summary-n { font-family: var(--font-display); font-size: 36px; line-height: 1; margin-bottom: 6px; }
-  .summary-l { font-size: 12px; color: var(--c-muted); }
+.skills-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.skill-item { display: flex; gap: 12px; align-items: flex-start; }
+.skill-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; margin-top: 1px;
+}
+.skill-text { font-size: 13px; line-height: 1.5; }
 
-  /* PHASE SECTION HEADERS */
-  .phase-section-head {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 20px; margin-top: 8px;
-  }
-  .phase-line { height: 2px; border-radius: 2px; flex: 1; }
-  .phase-section-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-top: 1.5rem; padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
 
-  /* FOOTER */
-  .footer {
-    background: var(--c-text); color: rgba(247,244,239,0.5);
-    padding: 40px 32px; text-align: center; font-size: 12px;
-  }
-  .footer strong { color: var(--c-bg); }
+/* ── FOOTER ── */
+.footer {
+  background: var(--text); color: rgba(245,241,235,.45);
+  padding: 40px 32px; text-align: center; font-size: 12px;
+}
+.footer strong { color: var(--bg); }
 
-  /* TOGGLE ARROW */
-  .toggle-arrow {
-    font-size: 16px; color: var(--c-muted); flex-shrink: 0;
-    transition: transform .2s; padding-top: 2px;
-  }
-  .module-card.expanded .toggle-arrow { transform: rotate(180deg); }
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .hero { padding: 48px 20px 40px; }
+  .container, .sticky-nav { padding: 0 16px; }
+  .module-body { padding-left: 22px; }
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 20px; }
+}
 
-  /* PRINT / SHARE BAR */
-  .share-bar {
-    background: var(--c-surface); border: 1px solid var(--c-border);
-    border-radius: 12px; padding: 16px 20px;
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 32px; flex-wrap: wrap;
-  }
-  .share-text { font-size: 13px; color: var(--c-muted); flex: 1; }
-  .share-btn {
-    font-size: 12px; font-weight: 600; padding: 8px 16px;
-    border-radius: 8px; border: none; cursor: pointer;
-    font-family: var(--font-body);
-    transition: opacity .15s;
-  }
-  .share-btn:hover { opacity: .8; }
-  .share-btn-primary { background: var(--c-text); color: var(--c-bg); }
-  .share-btn-secondary { background: var(--c-bg); color: var(--c-text); border: 1px solid var(--c-border); }
-
-  @media(max-width:600px){
-    .hero { padding: 48px 20px 40px; }
-    .container { padding: 0 16px; }
-    .sticky-nav { padding: 0 16px; }
-    .hero-stats { gap: 24px; }
-    .module-body { padding-left: 24px; }
-    .tools-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media print {
-    .sticky-nav, .share-bar, .toggle-arrow { display: none !important; }
-    .module-body { display: block !important; }
-    .module-card { page-break-inside: avoid; box-shadow: none; }
-    .hero::before, .hero::after { display: none; }
-  }
+@media print {
+  .sticky-nav, .share-bar, .toggle-arrow { display: none !important; }
+  .module-body { display: block !important; }
+  .module-card { page-break-inside: avoid; box-shadow: none; }
+  .hero::before, .hero::after { display: none; }
+}
 </style>
 </head>
 <body>
@@ -342,20 +376,20 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-label">Навчальний курс · Самостійне навчання · 2025–2026</div>
-    <h1 class="hero-title">UI/UX Design<br>та <em>АІ-прототипування</em><br>для бізнес-аналітиків</h1>
-    <p class="hero-sub">Курс для БА, які хочуть самостійно створювати прототипи веб та мобільних застосунків, валідувати ідеї з клієнтами та оцінювати якість АІ-генерованих концептів.</p>
+    <div class="hero-eyebrow">Навчальний курс зі спікерами · Версія 3.0 · 2025–2026</div>
+    <h1 class="hero-title">UI/UX Design<br>та <em>АІ-прототипування</em><br>для стейкхолдерів</h1>
+    <p class="hero-sub">Курс для стейкхолдерів, які хочуть самостійно створювати прототипи веб та мобільних застосунків, валідувати ідеї з клієнтами та оцінювати якість АІ-генерованих концептів.</p>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Фази навчання</div></div>
-      <div class="stat"><div class="stat-n">10</div><div class="stat-l">Модулів</div></div>
-      <div class="stat"><div class="stat-n">~16</div><div class="stat-l">Годин контенту</div></div>
-      <div class="stat"><div class="stat-n">5</div><div class="stat-l">АІ-інструментів</div></div>
-      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Безкоштовні матеріали</div></div>
+      <div><div class="stat-n">3</div><div class="stat-l">Фази · 3 спікери</div></div>
+      <div><div class="stat-n">11</div><div class="stat-l">Модулів</div></div>
+      <div><div class="stat-n">~21</div><div class="stat-l">Годин навчання</div></div>
+      <div><div class="stat-n">7</div><div class="stat-l">АІ-інструментів</div></div>
+      <div><div class="stat-n">60/40</div><div class="stat-l">Веб / Мобайл</div></div>
     </div>
   </div>
 </div>
 
-<!-- STICKY NAV -->
+<!-- NAV -->
 <nav class="sticky-nav">
   <div class="nav-inner">
     <a class="nav-link active" href="#overview">Огляд</a>
@@ -367,40 +401,39 @@
   </div>
 </nav>
 
-<!-- MAIN -->
 <main>
 
 <!-- OVERVIEW -->
 <section id="overview">
   <div class="container">
-    <div class="section-label">Структура курсу</div>
-    <h2 class="section-title">Три фази. Одна ціль.</h2>
+    <div class="section-eyebrow">Структура курсу</div>
+    <h2 class="section-title">Три фази. Три спікери. Одна ціль.</h2>
     <p class="section-sub">Від розуміння того, як думає користувач — до самостійного прототипу, захищеного перед клієнтом.</p>
 
     <div class="share-bar">
       <span class="share-text">📋 Поділіться цим курсом з менеджером або командою — відкрийте файл у браузері.</span>
-      <button class="share-btn share-btn-secondary" onclick="window.print()">🖨 Друкувати / PDF</button>
-      <button class="share-btn share-btn-primary" onclick="expandAll()">Розгорнути все</button>
+      <button class="btn btn-light" onclick="window.print()">🖨 Друкувати / PDF</button>
+      <button class="btn btn-dark" onclick="expandAll()">Розгорнути все</button>
     </div>
 
     <div class="phases">
-      <div class="phase-row" onclick="location.href='#phase1'" style="cursor:pointer">
-        <div class="phase-dot" style="background:#3B32A8"></div>
+      <div class="phase-row" onclick="location.href='#phase1'">
+        <div class="phase-dot" style="background:var(--p1)"></div>
         <div class="phase-name">Фаза 1 — Фундамент</div>
-        <div class="phase-meta">Модулі 01–03 · ~5–6 год</div>
-        <div class="phase-count" style="background:#EEEDFC;color:#3B32A8">3 модулі</div>
+        <div class="phase-meta">Модулі 01–04 · ~7 год</div>
+        <div class="phase-pill" style="background:var(--p1-light);color:var(--p1)">4 модулі</div>
       </div>
-      <div class="phase-row" onclick="location.href='#phase2'" style="cursor:pointer">
-        <div class="phase-dot" style="background:#1A7A59"></div>
+      <div class="phase-row" onclick="location.href='#phase2'">
+        <div class="phase-dot" style="background:var(--p2)"></div>
         <div class="phase-name">Фаза 2 — Критичне сприйняття</div>
-        <div class="phase-meta">Модулі 04–05 · ~4–5 год</div>
-        <div class="phase-count" style="background:#E3F5EE;color:#1A7A59">2 модулі</div>
+        <div class="phase-meta">Модулі 05–06 · ~4 год</div>
+        <div class="phase-pill" style="background:var(--p2-light);color:var(--p2)">2 модулі</div>
       </div>
-      <div class="phase-row" onclick="location.href='#phase3'" style="cursor:pointer">
-        <div class="phase-dot" style="background:#B36012"></div>
+      <div class="phase-row" onclick="location.href='#phase3'">
+        <div class="phase-dot" style="background:var(--p3)"></div>
         <div class="phase-name">Фаза 3 — Прототипування з АІ</div>
-        <div class="phase-meta">Модулі 06–10 · ~7–9 год</div>
-        <div class="phase-count" style="background:#FBF0E2;color:#B36012">5 модулів</div>
+        <div class="phase-meta">Модулі 07–11 · ~10 год</div>
+        <div class="phase-pill" style="background:var(--p3-light);color:var(--p3)">5 модулів</div>
       </div>
     </div>
   </div>
@@ -410,181 +443,277 @@
 <section id="phase1">
   <div class="container">
     <div class="phase-section-head">
-      <div class="phase-section-title" style="color:#3B32A8">Фаза 1</div>
-      <div class="phase-line" style="background:#3B32A8"></div>
+      <span class="phase-section-label" style="color:var(--p1)">Фаза 1</span>
+      <div class="phase-stripe" style="background:var(--p1)"></div>
     </div>
-    <div class="section-label">~5–6 годин · 3 модулі · лише NN/g та безкоштовні джерела</div>
+    <div class="section-eyebrow">4 модулі · ~7 годин · лекції + воркшопи</div>
     <h2 class="section-title">Фундамент</h2>
-    <p class="section-sub">Розуміння психології користувача, анатомії інтерфейсу та візуальної мови дизайну.</p>
-    <div class="modules">
+    <p class="section-sub">Психологія користувача, анатомія інтерфейсу (веб і мобайл 60/40), візуальна мова дизайну та дизайн-система.</p>
 
-      <!-- M01 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">01</div>
-          <div class="module-info">
-            <div class="module-title">Як думає користувач</div>
-            <div class="module-desc">UX як спосіб мислення. Ментальні моделі, user journey, болі та цілі.</div>
-            <div class="module-badges">
-              <span class="badge badge-theory">теорія</span>
-              <span class="badge-time">~35 хв матеріалів</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <div class="speaker-card">
+      <div class="speaker-av av1">UX</div>
+      <div class="speaker-info">
+        <div class="speaker-role">Спікер Фази 1 · UX Research & Strategy</div>
+        <div class="speaker-name">Name Surname</div>
+      </div>
+      <span class="badge b-theory speaker-phase-tag">Фаза 1</span>
+    </div>
+
+    <!-- M01 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">01</div>
+        <div class="mod-info">
+          <div class="mod-title">Як думає користувач</div>
+          <div class="mod-desc">UX як логіка поведінки. Ментальні моделі, jobs-to-be-done, user journey. Різниця між очікуваннями стейкхолдера і потребами кінцевого користувача.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">воркшоп</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: зрозуміти, що UX — це не стиль і не смак, а логіка поведінки людини. Навчитись дивитись на продукт очима користувача, а не клієнта.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">1.1</span><span class="lesson-title-text">Що таке UX і чим він відрізняється від UI</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Базові визначення, які формують правильний словник. Без цього БА буде плутати "красиво" і "зручно" — а це різні речі.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/definition-user-experience/" target="_blank">The Definition of User Experience (UX) — NN/g</a><span class="link-time">5 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/usability-101-introduction-to-usability/" target="_blank">Usability 101: Introduction to Usability — NN/g</a><span class="link-time">5 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/usability-101/" target="_blank">Usability 101 — NN/g</a><span class="link-time">4 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">1.2</span><span class="lesson-title-text">Ментальні моделі: чому користувач "не розуміє" інтерфейс</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Ключова концепція з Human-Centered Design: людина взаємодіє з продуктом через свої очікування, а не через логіку розробника. Розуміння цього — основа для збору правильних вимог.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/mental-models/" target="_blank">Mental Models and User Experience Design — NN/g</a><span class="link-time">7 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/mental-models/" target="_blank">What is a Mental Model? — NN/g</a><span class="link-time">3 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">1.3</span><span class="lesson-title-text">User Journey Map: шлях від задачі до результату</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Інструмент, який БА може використовувати вже зараз при зборі вимог — до будь-якого прототипу. Дозволяє зафіксувати весь шлях користувача і знайти прогалини у вимогах клієнта.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/journey-mapping-101/" target="_blank">Journey Mapping 101 — NN/g</a><span class="link-time">6 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/journey-mapping-101/" target="_blank">Customer Journey Mapping 101 — NN/g</a><span class="link-time">5 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Побудуй user journey map для одного зі своїх поточних проєктів: від першого контакту користувача до виконання основної задачі. Зафікуй кроки, очікування, проблеми. Час: ~30 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Розумію різницю між UX і UI. Знаю що таке ментальна модель і вмію будувати базовий user journey map.</div>
-          </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: зрозуміти, що UX — це не стиль і не смак, а логіка поведінки людини. Навчитись дивитись на продукт очима користувача, а не стейкхолдера.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.1</span><span class="lesson-title">Що таке UX і чим він відрізняється від UI</span></div>
+            <div class="lesson-why">Базові визначення, які формують правильний словник. Без цього стейкхолдер буде плутати "красиво" і "зручно" — а це різні речі.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/definition-user-experience/" target="_blank">The Definition of User Experience — NN/g</a><span class="link-time">5 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/usability-101-introduction-to-usability/" target="_blank">Usability 101: Introduction to Usability — NN/g</a><span class="link-time">5 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/usability-101/" target="_blank">Usability 101 — NN/g</a><span class="link-time">4 хв</span></div>
+            </div>
+            <div class="lesson-foot">~14 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.2</span><span class="lesson-title">Ментальні моделі: чому користувач "не розуміє" інтерфейс</span></div>
+            <div class="lesson-why">Ключова концепція Human-Centered Design: людина взаємодіє з продуктом через свої очікування, а не через логіку розробника. Це основа для збору правильних вимог.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/mental-models/" target="_blank">Mental Models and User Experience Design — NN/g</a><span class="link-time">7 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/mental-models/" target="_blank">What is a Mental Model? — NN/g</a><span class="link-time">3 хв</span></div>
+            </div>
+            <div class="lesson-foot">~10 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.3</span><span class="lesson-title">User Journey Map: шлях від задачі до результату</span></div>
+            <div class="lesson-why">Інструмент, який стейкхолдер може використовувати вже зараз при зборі вимог. Дозволяє зафіксувати весь шлях користувача і знайти прогалини у вимогах клієнта.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/journey-mapping-101/" target="_blank">Journey Mapping 101 — NN/g</a><span class="link-time">6 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/journey-mapping-101/" target="_blank">Customer Journey Mapping 101 — NN/g</a><span class="link-time">5 хв</span></div>
+            </div>
+            <div class="lesson-foot">~11 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">1.4</span><span class="lesson-title">Human-Centered Design: підхід, який стоїть за всім</span></div>
+            <div class="lesson-why">Design Thinking та HCD — фреймворки, на яких базується сучасна UX-практика. Стейкхолдер, який розуміє цей підхід, краще структурує збір вимог і валідацію ідей.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/design-thinking/" target="_blank">Design Thinking 101 — NN/g</a><span class="link-time">6 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.youtube.com/watch?v=_r0VX-aU_T8" target="_blank">What is Human-Centered Design? — IDEO</a><span class="link-time">4 хв</span></div>
+            </div>
+            <div class="lesson-foot">~10 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Воркшоп на занятті</div>
+          <div class="practice-text">Спікер разом з групою будує user journey map для одного з реальних проєктів учасників. Кожен стейкхолдер фіксує кроки, очікування та проблеми користувача свого продукту. Обговорення результатів. Час: ~30 хв у межах заняття.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Розумію різницю між UX і UI. Знаю що таке ментальна модель. Вмію будувати базовий user journey map для своїх проєктів.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M02 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">02</div>
-          <div class="module-info">
-            <div class="module-title">Анатомія інтерфейсу</div>
-            <div class="module-desc">З чого складається екран. Патерни веб і мобайл. Human-Centered Design.</div>
-            <div class="module-badges">
-              <span class="badge badge-theory">теорія</span>
-              <span class="badge-time">~41 хв матеріалів</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M02 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">02</div>
+        <div class="mod-info">
+          <div class="mod-title">Анатомія інтерфейсу: веб і мобайл <span class="badge b-up" style="font-size:9px;margin-left:6px">мобайл розширено</span></div>
+          <div class="mod-desc">Зони екрана, UI-патерни, навігація. Глибокий мобайл-блок: touch-таргети, thumb zone, safe areas, жести, iOS vs Android. Responsive vs adaptive. Веб/мобайл — 60/40.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">розбір прикладів</span>
+            <span class="b-time">120 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: навчитись "читати" будь-який екран по зонах і впізнавати стандартні UI-патерни у вимогах клієнтів.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">2.1</span><span class="lesson-title-text">З чого складається екран: зони, елементи, патерни</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Будь-який інтерфейс — це набір типових зон і компонентів. Вміння їх впізнавати дозволяє швидше перекладати вимоги клієнта у структуру екранів.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/design-pattern-guidelines-study-guide/" target="_blank">Design-Pattern Guidelines: Study Guide — NN/g</a><span class="link-time">6 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/web-ux-study-guide/" target="_blank">Web UX: Study Guide — NN/g</a><span class="link-time">8 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">2.2</span><span class="lesson-title-text">Веб vs мобайл: ключові відмінності</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Мобайл — не зменшена версія вебу. Різні жести, розміри елементів, патерни навігації. Критично важливо для БА, які збирають вимоги до мобільних продуктів.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/mobile-ux-study-guide/" target="_blank">Mobile UX: Study Guide — NN/g</a><span class="link-time">10 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/state-mobile-ux/" target="_blank">The State of Mobile User Experience — NN/g</a><span class="link-time">7 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">2.3</span><span class="lesson-title-text">Human-Centered Design: підхід, який стоїть за всім</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Design Thinking та HCD — фреймворки, на яких базується сучасна UX-практика. БА, який розуміє цей підхід, краще структурує збір вимог і валідацію ідей з клієнтом.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/design-thinking/" target="_blank">Design Thinking 101 — NN/g</a><span class="link-time">6 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.youtube.com/watch?v=_r0VX-aU_T8" target="_blank">What is Human-Centered Design? — IDEO</a><span class="link-time">4 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Відкрий веб-сервіс і мобільний застосунок. Розбий кожен екран на зони: навігація, контент, дії, статус. Знайди 2–3 UI-патерни і запиши їх назви. Час: ~25 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Вмію розкладати екран на функціональні зони, знаю відмінності веб і мобайл, розумію що таке HCD.</div>
-          </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: навчитись "читати" будь-який екран по зонах, впізнавати UI-патерни і розуміти ключові відмінності між веб і мобайл — як у теорії, так і в практиці прототипування.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.1</span><span class="lesson-title">Будова екрана: зони, елементи, патерни</span></div>
+            <div class="lesson-why">Будь-який інтерфейс — це набір типових зон і компонентів. Вміння їх впізнавати дозволяє швидше перекладати вимоги клієнта у структуру екранів.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/design-pattern-guidelines-study-guide/" target="_blank">Design-Pattern Guidelines: Study Guide — NN/g</a><span class="link-time">6 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/web-ux-study-guide/" target="_blank">Web UX: Study Guide — NN/g</a><span class="link-time">8 хв</span></div>
+            </div>
+            <div class="lesson-foot">~14 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.2</span><span class="lesson-title">Мобайл UX: чому мобайл — не зменшений веб</span></div>
+            <div class="lesson-why">Мобайл має власну логіку взаємодії. Thumb zone (зона великого пальця), touch-таргети мінімум 44px, safe areas, жестова навігація — все це принципово змінює підхід до проєктування.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/mobile-ux-study-guide/" target="_blank">Mobile UX: Study Guide — NN/g</a><span class="link-time">10 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/touch-target-size/" target="_blank">Touch Targets on Touchscreens — NN/g</a><span class="link-time">6 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/state-mobile-ux/" target="_blank">The State of Mobile User Experience — NN/g</a><span class="link-time">7 хв</span></div>
+            </div>
+            <div class="lesson-foot">~23 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.3</span><span class="lesson-title">Мобайл-навігація: патерни та iOS vs Android</span></div>
+            <div class="lesson-why">Tab bar, bottom navigation, hamburger, navigation hub — кожен патерн має свою логіку. iOS і Android мають різні конвенції, які стейкхолдер має розрізняти при зборі вимог.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/mobile-navigation-patterns/" target="_blank">Basic Patterns for Mobile Navigation — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://developer.apple.com/design/human-interface-guidelines/designing-for-ios" target="_blank">Designing for iOS — Apple HIG</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://m3.material.io/foundations" target="_blank">Material 3 Foundations — Google Material Design</a><span class="link-time">8 хв</span></div>
+            </div>
+            <div class="lesson-foot">~24 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">2.4</span><span class="lesson-title">Responsive vs Adaptive: як один продукт живе на різних екранах</span></div>
+            <div class="lesson-why">Критично важливо для стейкхолдерів, які збирають вимоги до продуктів, що мають працювати і на вебі, і на мобайлі. Це вплив на вимоги, а не лише на дизайн.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/mobile-first-not-mobile-only/" target="_blank">Mobile First Is NOT Mobile Only — NN/g</a><span class="link-time">7 хв</span></div>
+            </div>
+            <div class="lesson-foot">~7 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Практичний розбір на занятті</div>
+          <div class="practice-text">Спікер бере один реальний продукт (наприклад банківський застосунок) і розбирає його спочатку у вебі, потім у мобайлі: які зони, які патерни, де відмінності iOS vs Android. Кожен учасник повторює розбір на своєму прикладі.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Вмію розкладати веб і мобайл екран на функціональні зони. Знаю ключові мобайл-патерни і відмінності iOS/Android. Розумію що таке responsive і adaptive.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M03 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">03</div>
-          <div class="module-info">
-            <div class="module-title">Візуальна мова дизайну</div>
-            <div class="module-desc">Ієрархія, типографіка, колір, відступи. Як відрізнити якісне від поганого.</div>
-            <div class="module-badges">
-              <span class="badge badge-theory">теорія</span>
-              <span class="badge-time">~57 хв матеріалів + аудит</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M03 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">03</div>
+        <div class="mod-info">
+          <div class="mod-title">Візуальна мова дизайну</div>
+          <div class="mod-desc">Ієрархія, типографіка, колір, сітка, відступи. Gestalt-принципи. Як відрізнити якісне від поганого — через реальні приклади веб і мобайл.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">аудит екрана</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: отримати конкретний словник і критерії для оцінки якості UI. Після цього модуля БА зможе говорити про дизайн не відчуттями, а фактами.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">3.1</span><span class="lesson-title-text">5 принципів візуального дизайну в UX</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Scale, hierarchy, balance, contrast, Gestalt — фундаментальні принципи, які пояснюють, чому одні інтерфейси виглядають добре, а інші — ні. Базовий словник для оцінки АІ-прототипів.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/principles-visual-design/" target="_blank">5 Principles of Visual Design in UX — NN/g</a><span class="link-time">8 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/visual-hierarchy/" target="_blank">Visual Hierarchy — NN/g</a><span class="link-time">3 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/the-gestalt-principles-intro/" target="_blank">The Gestalt Principles for UI Design — NN/g</a><span class="link-time">4 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">3.2</span><span class="lesson-title-text">Візуальна ієрархія: чому погляд іде туди, куди потрібно</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Детальний розбір ієрархії через розмір, колір, відступи, контраст. Найважливіший інструмент для перевірки якості будь-якого екрана — і найчастіша помилка АІ-генерованих прототипів.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/visual-hierarchy-ux-definition/" target="_blank">Visual Hierarchy in UX: Definition — NN/g</a><span class="link-time">7 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">3.3</span><span class="lesson-title-text">Типографіка, колір, сітка: чому це важливо для UX</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Практичний розбір через аналіз реальних продуктів — Spotify, Medium, Dovetail. Що таке type system, навіщо потрібна 8px-сітка, як колір передає статус і ієрархію.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/why-does-design-look-good/" target="_blank">Why Does a Design Look Good? — NN/g</a><span class="link-time">8 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/why-does-a-design-look-good-part2/" target="_blank">The Anatomy of a Good Design — NN/g</a><span class="link-time">8 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/visual-design-in-ux-study-guide/" target="_blank">Visual Design in UX: Study Guide — NN/g</a><span class="link-time">10 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Підсумковий аудит Фази 1</div>
-            <div class="practice-text">Обери скриншот реального продукту. Проведи аудит за 5 критеріями: ієрархія, типографіка, колір, відступи, UI-патерни. Оформи як 1 сторінку тексту або слайд. Час: ~40 хв.</div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: отримати конкретний словник і критерії для оцінки якості UI. Після цього стейкхолдер зможе говорити про дизайн не відчуттями, а фактами.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">3.1</span><span class="lesson-title">5 принципів візуального дизайну в UX</span></div>
+            <div class="lesson-why">Scale, hierarchy, balance, contrast, Gestalt — фундаментальні принципи, які пояснюють чому одні інтерфейси виглядають добре, а інші — ні. Базовий словник для оцінки АІ-прототипів.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/principles-visual-design/" target="_blank">5 Principles of Visual Design in UX — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/visual-hierarchy/" target="_blank">Visual Hierarchy — NN/g</a><span class="link-time">3 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/the-gestalt-principles-intro/" target="_blank">The Gestalt Principles for UI Design — NN/g</a><span class="link-time">4 хв</span></div>
+            </div>
+            <div class="lesson-foot">~15 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">3.2</span><span class="lesson-title">Візуальна ієрархія: чому погляд іде туди, куди потрібно</span></div>
+            <div class="lesson-why">Детальний розбір ієрархії через розмір, колір, відступи, контраст. Найважливіший інструмент для перевірки якості будь-якого екрана — і найчастіша помилка АІ-прототипів.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/visual-hierarchy-ux-definition/" target="_blank">Visual Hierarchy in UX: Definition — NN/g</a><span class="link-time">7 хв</span></div>
+            </div>
+            <div class="lesson-foot">~7 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">3.3</span><span class="lesson-title">Типографіка, колір, сітка: практичний розбір через реальні продукти</span></div>
+            <div class="lesson-why">Що таке type system, навіщо потрібна 8px-сітка, як колір передає статус і ієрархію — через аналіз реальних продуктів Spotify, Medium, Dovetail. Для мобайлу: Dynamic Type, щільність, safe zones.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/why-does-design-look-good/" target="_blank">Why Does a Design Look Good? — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/why-does-a-design-look-good-part2/" target="_blank">The Anatomy of a Good Design — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/visual-design-in-ux-study-guide/" target="_blank">Visual Design in UX: Study Guide — NN/g</a><span class="link-time">10 хв</span></div>
+            </div>
+            <div class="lesson-foot">~26 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Аудит на занятті</div>
+          <div class="practice-text">Кожен учасник отримує скриншот реального продукту (веб і мобайл). Проводить мінi-аудит за критеріями: ієрархія, типографіка, колір, відступи, патерни. Спікер розбирає помилки і пояснює термінологію.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Знаю 5 принципів візуального дизайну. Можу описати проблему інтерфейсу конкретними термінами. Маю словник для розмови з дизайнером.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M04 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">04</div>
+        <div class="mod-info">
+          <div class="mod-title">Дизайн-система: компоненти, токени, як читати <span class="badge b-new" style="font-size:9px;margin-left:6px">новий</span></div>
+          <div class="mod-desc">Що таке дизайн-система і навіщо вона стейкхолдеру. Компоненти, токени, стилі. Як читати Figma-бібліотеку. Розбір реальних систем: Material 3, Apple HIG, Atlassian.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">розбір Figma-файлу</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Знаю 5 принципів візуального дизайну. Можу описати проблему інтерфейсу конкретними термінами. Готовий оцінювати АІ-генеровані прототипи у Фазі 2.</div>
-          </div>
+        </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: зрозуміти що таке дизайн-система і як вона впливає на вимоги і прототипування. Стейкхолдер має вміти "читати" систему — як словник для розмови з командою дизайну.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">4.1</span><span class="lesson-title">Що таке дизайн-система і навіщо вона стейкхолдеру</span></div>
+            <div class="lesson-why">Дизайн-система — це не просто набір компонентів. Це мова, якою спілкуються дизайнери і розробники. Стейкхолдер, який розуміє цю мову, формулює вимоги точніше і уникає непорозумінь.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Design Systems 101 — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/design-systems-vs-style-guides/" target="_blank">Design Systems vs. Style Guides — NN/g</a><span class="link-time">7 хв</span></div>
+            </div>
+            <div class="lesson-foot">~15 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">4.2</span><span class="lesson-title">Компоненти, токени, патерни: базова термінологія</span></div>
+            <div class="lesson-why">Кнопка — це компонент. #2E28A0 — це токен кольору. Форма логіну — це патерн. Знання цих термінів дозволяє стейкхолдеру давати точні вимоги: "використай стандартний компонент кнопки, а не кастомний".</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/front-end-style-guides/" target="_blank">Front-End Style Guides: Definition, Requirements — NN/g</a><span class="link-time">8 хв</span></div>
+            </div>
+            <div class="lesson-foot">~8 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">4.3</span><span class="lesson-title">Галузеві дизайн-системи: Material 3, Apple HIG, Atlassian</span></div>
+            <div class="lesson-why">Три великих системи, які задають стандарти для більшості продуктів. Стейкхолдер, який їх знає, краще розуміє чому дизайнер пропонує той чи інший підхід — і може оцінити АІ-прототип на відповідність стандарту.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">ресурс</span><a href="https://m3.material.io/" target="_blank">Material Design 3 — Google (веб + мобайл)</a><span class="link-time">огляд 15 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">ресурс</span><a href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">Human Interface Guidelines — Apple (мобайл)</a><span class="link-time">огляд 15 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">ресурс</span><a href="https://atlassian.design/" target="_blank">Atlassian Design System (веб SaaS)</a><span class="link-time">огляд 10 хв</span></div>
+            </div>
+            <div class="lesson-foot">~40 хв (огляд трьох систем)</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Розбір Figma-файлу на занятті</div>
+          <div class="practice-text">Спікер відкриває публічну Figma-бібліотеку (наприклад Material Design 3 Figma Kit або Atlassian) і показує: де компоненти, де токени, як вони застосовуються на екранах. Учасники повторюють навігацію в реальному файлі.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Розумію що таке дизайн-система, компонент, токен і патерн. Можу відкрити Figma-бібліотеку і знайти потрібний компонент. Знаю три галузеві стандарти.</div>
         </div>
       </div>
     </div>
@@ -595,136 +724,151 @@
 <section id="phase2">
   <div class="container">
     <div class="phase-section-head">
-      <div class="phase-section-title" style="color:#1A7A59">Фаза 2</div>
-      <div class="phase-line" style="background:#1A7A59"></div>
+      <span class="phase-section-label" style="color:var(--p2)">Фаза 2</span>
+      <div class="phase-stripe" style="background:var(--p2)"></div>
     </div>
-    <div class="section-label">~4–5 годин · 2 модулі</div>
+    <div class="section-eyebrow">2 модулі · ~4 годин · лекції + аудити</div>
     <h2 class="section-title">Критичне сприйняття</h2>
-    <p class="section-sub">Евристики Нільсена, когнітивне навантаження, сучасні тренди та типові помилки АІ-дизайну.</p>
-    <div class="modules">
+    <p class="section-sub">Евристики Нільсена, когнітивне навантаження, сучасні тренди та типові помилки АІ-генерованого дизайну.</p>
 
-      <!-- M04 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">04</div>
-          <div class="module-info">
-            <div class="module-title">10 Евристик Нільсена та когнітивне навантаження</div>
-            <div class="module-desc">Галузевий стандарт оцінки інтерфейсів. Воркбук для самостійного аудиту.</div>
-            <div class="module-badges">
-              <span class="badge badge-theory">теорія</span>
-              <span class="badge-time">~48 хв + практика</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <div class="speaker-card">
+      <div class="speaker-av av2">DS</div>
+      <div class="speaker-info">
+        <div class="speaker-role">Спікер Фази 2 · UI Design & Quality Review</div>
+        <div class="speaker-name">Name Surname</div>
+      </div>
+      <span class="badge b-practice speaker-phase-tag">Фаза 2</span>
+    </div>
+
+    <!-- M05 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">05</div>
+        <div class="mod-info">
+          <div class="mod-title">10 Евристик Нільсена та когнітивне навантаження</div>
+          <div class="mod-desc">Канонічний галузевий стандарт + Laws of UX. Заповнення Heuristic Evaluation Workbook разом зі спікером на реальних веб і мобайл кейсах.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">практика з воркбуком</span>
+            <span class="b-time">120 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: засвоїти перевірений галузевий стандарт. Після цього БА може проводити швидкий евристичний аналіз і аргументувати проблеми конкретними принципами.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">4.1</span><span class="lesson-title-text">10 Евристик Нільсена — канонічний текст</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Першоджерело, яке потрібно прочитати один раз і знати назавжди. Сформульовано у 1994, актуальне досі — це і є ознака фундаментального принципу. Кожна евристика має короткий опис і приклади.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ten-usability-heuristics/" target="_blank">10 Usability Heuristics for User Interface Design — NN/g, Jakob Nielsen</a><span class="link-time">6 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">4.2</span><span class="lesson-title-text">Як проводити евристичний аналіз + безкоштовний воркбук</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Стаття + безкоштовний воркбук від NN/g. БА отримує конкретний інструмент, яким може користуватись одразу — для аналізу вимог клієнта або АІ-прототипу.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/" target="_blank">How to Conduct a Heuristic Evaluation — NN/g</a><span class="link-time">11 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-doc">воркбук</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g, завантажити</a><span class="link-time">PDF</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">4.3</span><span class="lesson-title-text">Когнітивне навантаження: чому "занадто багато" ламає UX</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Одна з найважливіших концепцій психології UX. Пояснює, чому перевантажені екрани не працюють і як мозок обробляє інтерфейс. Прямо пов'язано з типовими помилками АІ-прототипів.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank">Minimize Cognitive Load to Maximize Usability — NN/g</a><span class="link-time">8 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/cognitive-load/" target="_blank">What Is Cognitive Load? — NN/g</a><span class="link-time">3 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">4.4</span><span class="lesson-title-text">Laws of UX — психологічні закони в дизайні</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Збірник з 21 закону та принципу: Закон Якоба, Закон Фіттса, Закон Хіка та ін. Кожен — одна картка з поясненням і прикладом. Ідеальний формат для самостійного вивчення.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-tool">ресурс</span><a href="https://lawsofux.com/" target="_blank">Laws of UX — lawsofux.com (21 закон, безкоштовно)</a><span class="link-time">20–30 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Завантаж Heuristic Evaluation Workbook. Обери один екран і пройдись по всіх 10 евристиках — по 1–2 проблеми або підтвердження для кожної. Час: ~45–60 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Знаю всі 10 евристик і можу застосувати їх до будь-якого екрана. Розумію когнітивне навантаження. Маю заповнений воркбук як перший евристичний аудит.</div>
-          </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: засвоїти перевірений галузевий стандарт. Після цього стейкхолдер може проводити швидкий евристичний аналіз і аргументувати проблеми конкретними принципами, а не інтуїцією.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.1</span><span class="lesson-title">10 Евристик Нільсена — канонічний текст</span></div>
+            <div class="lesson-why">Першоджерело, яке потрібно прочитати один раз і знати назавжди. Сформульовано у 1994, актуальне досі — це і є ознака фундаментального принципу.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/ten-usability-heuristics/" target="_blank">10 Usability Heuristics for User Interface Design — NN/g, Jakob Nielsen</a><span class="link-time">6 хв</span></div>
+            </div>
+            <div class="lesson-foot">~6 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.2</span><span class="lesson-title">Як проводити евристичний аналіз + безкоштовний воркбук</span></div>
+            <div class="lesson-why">Стаття + безкоштовний воркбук від NN/g. Стейкхолдер отримує конкретний інструмент, яким може користуватись одразу — для аналізу вимог клієнта або АІ-прототипу.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/" target="_blank">How to Conduct a Heuristic Evaluation — NN/g</a><span class="link-time">11 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-doc">воркбук</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g</a><span class="link-time">PDF</span></div>
+            </div>
+            <div class="lesson-foot">~11 хв + інструмент</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.3</span><span class="lesson-title">Когнітивне навантаження: чому "занадто багато" ламає UX</span></div>
+            <div class="lesson-why">Одна з найважливіших концепцій психології UX. Пояснює чому перевантажені екрани не працюють. Особливо актуально для мобайлу — де простору менше, а інформації часто більше.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank">Minimize Cognitive Load to Maximize Usability — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/cognitive-load/" target="_blank">What Is Cognitive Load? — NN/g</a><span class="link-time">3 хв</span></div>
+            </div>
+            <div class="lesson-foot">~11 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">5.4</span><span class="lesson-title">Laws of UX — психологічні закони в дизайні</span></div>
+            <div class="lesson-why">Збірник з 21 закону: Закон Якоба, Закон Фіттса, Закон Хіка та ін. Кожен — одна картка з поясненням і прикладом. Особливо корисно для мобайлу — Закон Фіттса безпосередньо пояснює розміри touch-таргетів.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-tool">ресурс</span><a href="https://lawsofux.com/" target="_blank">Laws of UX — lawsofux.com (21 закон, безкоштовно)</a><span class="link-time">20–30 хв</span></div>
+            </div>
+            <div class="lesson-foot">~20–30 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Практика з воркбуком на занятті</div>
+          <div class="practice-text">Спікер разом з групою заповнює Heuristic Evaluation Workbook для одного реального продукту — спочатку веб-версії, потім мобайл. Учасники бачать, як одні й ті ж евристики проявляються по-різному на різних платформах.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Знаю всі 10 евристик і можу застосувати їх до будь-якого екрана. Розумію когнітивне навантаження. Маю заповнений воркбук як перший евристичний аудит.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M05 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">05</div>
-          <div class="module-info">
-            <div class="module-title">Сучасні тренди vs вічні принципи</div>
-            <div class="module-desc">Куди рухається UX у 2026. Де АІ-дизайн виглядає правильно, але ламає UX.</div>
-            <div class="module-badges">
-              <span class="badge badge-theory">теорія</span>
-              <span class="badge-time">~46 хв + порівняльний аудит</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M06 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">06</div>
+        <div class="mod-info">
+          <div class="mod-title">Сучасні тренди vs вічні принципи</div>
+          <div class="mod-desc">State of UX 2026. АІ як новий UI-парадигм. Де АІ-генерований дизайн виглядає правильно але ламає UX. Порівняльний аудит двох продуктів — веб і мобайл.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">порівняльний аудит</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: навчитись відрізняти те що "виглядає сучасно" від того що "працює правильно". Зрозуміти де АІ-інструменти генерують трендові але проблемні рішення.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">5.1</span><span class="lesson-title-text">State of UX 2026: куди рухається індустрія</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Щорічний огляд від NN/g — стан галузі, ключові виклики, роль АІ в дизайні. Дає БА контекст: чому питання якості UX стає важливішим, а не менш важливим в епоху АІ-генерації.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/state-of-ux-2026/" target="_blank">State of UX 2026: Design Deeper to Differentiate — NN/g</a><span class="link-time">12 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">5.2</span><span class="lesson-title-text">АІ як новий UX-парадигм: що це означає для інтерфейсів</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Стаття Якоба Нільсена про те, як АІ змінює самі принципи взаємодії людини з інтерфейсом. Допомагає БА краще оцінювати не лише прототипи, а й вимоги клієнтів до АІ-функцій у продуктах.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ai-paradigm/" target="_blank">AI: First New UI Paradigm in 60 Years — NN/g, Jakob Nielsen</a><span class="link-time">10 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">5.3</span><span class="lesson-title-text">Де АІ-дизайн виглядає правильно, але ламає UX</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Два матеріали: загальний аналіз слабких сторін АІ-інструментів у дизайні + феномен "handmade design" як сигнал довіри. Прямо відповідає на запитання: "як зрозуміти, що АІ зробив погано?"</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ux-reset-2025/" target="_blank">The UX Reckoning: Prepare for 2025 and Beyond — NN/g</a><span class="link-time">10 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/handmade-designs/" target="_blank">Handmade Designs: The New Trust Signal — NN/g (2025)</a><span class="link-time">6 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">5.4</span><span class="lesson-title-text">Аналіз якісних дизайнів: бачити чому це добре</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Повернення до аналітичних матеріалів NN/g — але тепер з новим фокусом: розуміти не тільки "що зроблено", а "чому це відповідає принципам". Готує погляд до практики валідації у Фазі 3.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/visual-design-in-ux-study-guide/" target="_blank">Visual Design in UX: Study Guide — NN/g (розділ Testing)</a><span class="link-time">8 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Підсумковий аудит Фази 2</div>
-            <div class="practice-text">Порівняй 2 схожих продукти (два банківських застосунки або два SaaS-дашборди). Для кожного: які тренди, які евристики виконуються/порушуються, де когнітивне навантаження. Висновок: який кращий і чому — аргументами. Час: ~60 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат Фази 2</div>
-            <div class="outcome-text">Вмію оцінювати за евристиками. Знаю де АІ найчастіше помиляється. Готовий до практичного прототипування у Фазі 3.</div>
-          </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: навчитись відрізняти те що "виглядає сучасно" від того що "працює правильно". Зрозуміти де АІ-інструменти генерують трендові але проблемні рішення.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.1</span><span class="lesson-title">State of UX 2026: куди рухається індустрія</span></div>
+            <div class="lesson-why">Щорічний огляд від NN/g — стан галузі, ключові виклики, роль АІ в дизайні. Дає стейкхолдеру контекст: чому питання якості UX стає важливішим, а не менш важливим в епоху АІ-генерації.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/state-of-ux-2026/" target="_blank">State of UX 2026: Design Deeper to Differentiate — NN/g</a><span class="link-time">12 хв</span></div>
+            </div>
+            <div class="lesson-foot">~12 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.2</span><span class="lesson-title">АІ як новий UX-парадигм: що це означає для інтерфейсів</span></div>
+            <div class="lesson-why">Стаття Якоба Нільсена про те, як АІ змінює самі принципи взаємодії людини з інтерфейсом. Допомагає стейкхолдеру краще оцінювати не лише прототипи, а й вимоги клієнтів до АІ-функцій у продуктах.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/ai-paradigm/" target="_blank">AI: First New UI Paradigm in 60 Years — NN/g, Jakob Nielsen</a><span class="link-time">10 хв</span></div>
+            </div>
+            <div class="lesson-foot">~10 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.3</span><span class="lesson-title">Де АІ-дизайн виглядає правильно, але ламає UX</span></div>
+            <div class="lesson-why">Два матеріали: загальний аналіз слабких сторін АІ-інструментів у дизайні + феномен "handmade design" як сигнал довіри. Прямо відповідає: "як зрозуміти, що АІ зробив погано?"</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/ux-reset-2025/" target="_blank">The UX Reckoning: Prepare for 2025 and Beyond — NN/g</a><span class="link-time">10 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/handmade-designs/" target="_blank">Handmade Designs: The New Trust Signal — NN/g (2025)</a><span class="link-time">6 хв</span></div>
+            </div>
+            <div class="lesson-foot">~16 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">6.4</span><span class="lesson-title">Аналіз якісних дизайнів: бачити чому це добре</span></div>
+            <div class="lesson-why">Повернення до аналітичних матеріалів NN/g — але тепер з новим фокусом: розуміти не тільки "що зроблено", а "чому це відповідає принципам". Готує погляд до практики валідації у Фазі 3.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/visual-design-in-ux-study-guide/" target="_blank">Visual Design in UX: Study Guide — NN/g (розділ Testing)</a><span class="link-time">8 хв</span></div>
+            </div>
+            <div class="lesson-foot">~8 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Порівняльний аудит на занятті</div>
+          <div class="practice-text">Спікер бере два схожих продукти (наприклад два банківські застосунки або два SaaS-дашборди). Для кожного — розбір: які тренди, які евристики виконуються/порушуються, де когнітивне навантаження, як ведеться мобайл-версія. Висновок: який кращий і чому — аргументами, а не відчуттями.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат Фази 2</div>
+          <div class="outcome-text">Вмію оцінювати інтерфейс за евристиками і аргументувати проблеми. Знаю де АІ найчастіше помиляється. Готовий до практичного прототипування у Фазі 3.</div>
         </div>
       </div>
     </div>
@@ -735,325 +879,376 @@
 <section id="phase3">
   <div class="container">
     <div class="phase-section-head">
-      <div class="phase-section-title" style="color:#B36012">Фаза 3</div>
-      <div class="phase-line" style="background:#B36012"></div>
+      <span class="phase-section-label" style="color:var(--p3)">Фаза 3</span>
+      <div class="phase-stripe" style="background:var(--p3)"></div>
     </div>
-    <div class="section-label">~7–9 годин · 5 модулів · реальні інструменти</div>
+    <div class="section-eyebrow">5 модулів · ~10 годин · live-демо + практика</div>
     <h2 class="section-title">Прототипування з АІ</h2>
-    <p class="section-sub">Від теорії прототипу до захисту вимог перед клієнтом — з 5 АІ-інструментами.</p>
-    <div class="modules">
+    <p class="section-sub">Від логіки прототипу до захисту вимог перед клієнтом — з 7 АІ-інструментами, окремим підходом для веб і мобайл.</p>
 
-      <!-- M06 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">06</div>
-          <div class="module-info">
-            <div class="module-title">Логіка прототипу: що, коли і навіщо</div>
-            <div class="module-desc">Lo-fi vs Hi-fi. User flow vs user journey. Як підготувати прототип для тестування.</div>
-            <div class="module-badges">
-              <span class="badge badge-theory">теорія</span>
-              <span class="badge-time">~25 хв + flow</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <div class="speaker-card">
+      <div class="speaker-av av3">AI</div>
+      <div class="speaker-info">
+        <div class="speaker-role">Спікер Фази 3 · AI Prototyping & Product Design</div>
+        <div class="speaker-name">Name Surname</div>
+      </div>
+      <span class="badge b-ai speaker-phase-tag">Фаза 3</span>
+    </div>
+
+    <!-- M07 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">07</div>
+        <div class="mod-info">
+          <div class="mod-title">Логіка прототипу: lo-fi, hi-fi, user flow</div>
+          <div class="mod-desc">Рівні деталізації та коли що обирати. Різниця між user journey і user flow. Мінімальний прототип для валідації. Live-демо зі спікером — веб і мобайл.</div>
+          <div class="mod-badges">
+            <span class="badge b-theory">лекція</span>
+            <span class="badge b-practice">демо + flow-вправа</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: зрозуміти що таке прототип як інструмент валідації, яких він буває видів і коли який доречний.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">6.1</span><span class="lesson-title-text">Lo-fi vs Hi-fi: чому "дорого і красиво" не завжди краще</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Канонічна стаття NN/g про рівні деталізації прототипів. Пояснює, коли достатньо скетча, а коли потрібен інтерактивний прототип — і чому це рішення залежить від питання, яке ти хочеш перевірити.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes: Low Fidelity vs. High Fidelity — NN/g</a><span class="link-time">8 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/tips-for-new-prototypers/" target="_blank">5 Tips for New Prototypers — NN/g</a><span class="link-time">3 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">6.2</span><span class="lesson-title-text">User flow vs user journey: що прототип має покривати</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Чітке розмежування між картою шляху і конкретним потоком екранів. Для БА це критично: вимога клієнта часто описує journey, а прототип має показати flow. Ця різниця — джерело більшості непорозумінь.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/user-journeys-vs-user-flows/" target="_blank">User Journeys vs. User Flows — NN/g</a><span class="link-time">5 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">6.3</span><span class="lesson-title-text">Як підготувати прототип для тестування з клієнтом</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Практичні принципи: що потрібно продумати до показу прототипу, як уникнути типових помилок презентації та що робить прототип "достатньо добрим" для валідації ідеї.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-video">відео</span><a href="https://www.nngroup.com/videos/prototyping-tool/" target="_blank">UX Prototyping: 5 Factors for Selecting the Right Tool — NN/g</a><span class="link-time">3 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/paper-prototyping/" target="_blank">Paper Prototyping: Getting User Data Before You Code — NN/g</a><span class="link-time">6 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Визнач яке питання хочеш перевірити з клієнтом. Запиши user flow (3–5 кроків): Крок 1 → Крок 2 → Рішення → Результат. Це основа для прототипу в наступному модулі. Час: ~20 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Розумію різницю між lo-fi та hi-fi і між user journey та user flow. Маю готовий user flow для практики.</div>
-          </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: зрозуміти що таке прототип як інструмент валідації, яких він буває видів і коли який доречний — окремо для веб і мобайл контексту.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">7.1</span><span class="lesson-title">Lo-fi vs Hi-fi: чому "дорого і красиво" не завжди краще</span></div>
+            <div class="lesson-why">Прототип — це питання, а не відповідь. Рівень деталізації залежить від того, що ти хочеш перевірити. Для мобайлу lo-fi особливо корисний — можна намалювати на папері і вже отримати цінний фідбек.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes: Low Fidelity vs. High Fidelity — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/tips-for-new-prototypers/" target="_blank">5 Tips for New Prototypers — NN/g</a><span class="link-time">3 хв</span></div>
+            </div>
+            <div class="lesson-foot">~11 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">7.2</span><span class="lesson-title">User flow vs user journey: що прототип має покривати</span></div>
+            <div class="lesson-why">Чітке розмежування між картою шляху і конкретним потоком екранів. Вимога клієнта часто описує journey, а прототип має показати flow. Ця різниця — джерело більшості непорозумінь.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/user-journeys-vs-user-flows/" target="_blank">User Journeys vs. User Flows — NN/g</a><span class="link-time">5 хв</span></div>
+            </div>
+            <div class="lesson-foot">~5 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">7.3</span><span class="lesson-title">Як підготувати прототип для тестування з клієнтом</span></div>
+            <div class="lesson-why">Практичні принципи: що потрібно продумати до показу прототипу. Для мобайлу — окремі нюанси: показувати на пристрої, а не на екрані ноутбука.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-v">відео</span><a href="https://www.nngroup.com/videos/prototyping-tool/" target="_blank">UX Prototyping: 5 Factors for Selecting the Right Tool — NN/g</a><span class="link-time">3 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/paper-prototyping/" target="_blank">Paper Prototyping: Getting User Data Before You Code — NN/g</a><span class="link-time">6 хв</span></div>
+            </div>
+            <div class="lesson-foot">~9 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Live-демо + flow-вправа на занятті</div>
+          <div class="practice-text">Спікер live демонструє побудову user flow для реального сценарію — спочатку у вигляді скетча, потім у вигляді структурованого списку екранів. Кожен учасник будує свій flow для одного зі своїх проєктів. Це основа для прототипу в модулі 09.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Розумію різницю між lo-fi та hi-fi, між user journey і user flow. Маю готовий user flow для практики в модулях 08–09.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M07 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">07</div>
-          <div class="module-info">
-            <div class="module-title">5 АІ-інструментів: огляд, порівняння, перший запуск</div>
-            <div class="module-desc">Google Stitch, Claude, Figma Make, Lovable, v0 — для чого кожен і коли обирати.</div>
-            <div class="module-badges">
-              <span class="badge badge-ai">АІ-інструменти</span>
-              <span class="badge-time">~90 хв практики</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M08 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">08</div>
+        <div class="mod-info">
+          <div class="mod-title">Від вимог стейкхолдера до екранів</div>
+          <div class="mod-desc">Як перекладати вимоги у структурований промпт. Мінімальний прототип для валідації. Ітерація через чат з АІ. Різний підхід до промптингу — веб і мобайл.</div>
+          <div class="mod-badges">
+            <span class="badge b-practice">практика</span>
+            <span class="badge b-ai">промптинг</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: зрозуміти для чого кожен інструмент підходить найкраще, зареєструватись і запустити перший прототип у кожному.</div>
-          <div class="tools-grid">
-            <div class="tool-card">
-              <div class="tool-name">Google Stitch</div>
-              <div class="tool-desc">Найшвидший старт. Текст → мобільний екран за 90 сек. Gemini 2.5 Pro.</div>
-              <div class="tool-free">✓ Безкоштовно</div>
-              <a class="tool-link" href="https://stitch.withgoogle.com/" target="_blank">stitch.withgoogle.com →</a>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: навчитись перекладати сирі вимоги клієнта у структуру прототипу. Ключовий навик стейкхолдера — не "намалювати красиво", а правильно зафіксувати ідею у форматі для перевірки.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">8.1</span><span class="lesson-title">Як писати промпти для АІ-прототипування</span></div>
+            <div class="lesson-why">Якість промпту = якість прототипу. Стейкхолдер, який вміє чітко формулювати контекст, цільову аудиторію, сценарій і обмеження — отримує значно кращий результат від будь-якого АІ-інструменту.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://stormy.ai/blog/how-to-use-v0-dev-ai-web-development-guide" target="_blank">How to Write Effective Prompts for AI UI Tools — Stormy AI</a><span class="link-time">10 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-doc">шаблон</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">Структура промпту: мета → користувач → екрани → фічі — Lovable Docs</a><span class="link-time">5 хв</span></div>
             </div>
-            <div class="tool-card">
-              <div class="tool-name">Claude</div>
-              <div class="tool-desc">UX-консультант та генератор концептів. Ідеальний у парі з іншими інструментами.</div>
-              <div class="tool-free">✓ Безкоштовно</div>
-              <a class="tool-link" href="https://claude.ai/" target="_blank">claude.ai →</a>
+            <div class="lesson-foot">~15 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">8.2</span><span class="lesson-title">Промптинг для мобайлу: специфіка і відмінності від веб</span></div>
+            <div class="lesson-why">Мобайл-прототип потребує іншого промпту: треба явно вказати платформу (iOS/Android), тип навігації (tab bar / bottom nav), розміри touch-елементів. Без цього АІ генерує веб-інтерфейс зі зменшеним шрифтом.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-d">практика</span><a href="https://stitch.withgoogle.com/" target="_blank">Google Stitch — спробуй той самий промпт для веб і мобайл, порівняй</a><span class="link-time">20 хв</span></div>
             </div>
-            <div class="tool-card">
-              <div class="tool-name">Figma Make</div>
-              <div class="tool-desc">Інтерактивний прототип з навігацією. Найближчий до фінального продукту.</div>
-              <div class="tool-free">✓ Starter plan</div>
-              <a class="tool-link" href="https://www.figma.com/make/" target="_blank">figma.com/make →</a>
+            <div class="lesson-foot">~20 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">8.3</span><span class="lesson-title">Ітерація: як уточнювати прототип через чат з АІ</span></div>
+            <div class="lesson-why">АІ-прототипування — це діалог, а не одноразовий запит. Перший результат майже ніколи не фінальний. Техніки ітеративного уточнення: як давати фідбек АІ, коли починати заново, а коли редагувати.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://uxdesign.cc/getting-started-with-lovable-the-no-hype-beginner-tips-to-building-with-ai-36460d46249d" target="_blank">No-Hype Tips: Як ітерувати в Lovable — UX Collective</a><span class="link-time">7 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/case-study-iterative-design-prototyping/" target="_blank">Case Study: Iterative Design and Prototype Testing — NN/g</a><span class="link-time">8 хв</span></div>
             </div>
-            <div class="tool-card">
-              <div class="tool-name">Lovable</div>
-              <div class="tool-desc">Жива веб-апка для демо клієнту. Генерує реальний front-end код.</div>
-              <div class="tool-free">✓ 5 кредитів/день</div>
-              <a class="tool-link" href="https://lovable.dev/" target="_blank">lovable.dev →</a>
-            </div>
-            <div class="tool-card">
-              <div class="tool-name">v0 (Vercel)</div>
-              <div class="tool-desc">Точні UI-компоненти у React/Tailwind. Для конкретних елементів UI.</div>
-              <div class="tool-free">✓ Безкоштовний tier</div>
-              <a class="tool-link" href="https://v0.dev/" target="_blank">v0.dev →</a>
-            </div>
-          </div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">7.2</span><span class="lesson-title-text">Google Stitch: покроковий гайд</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Найшвидший старт серед усіх інструментів. Gemini 2.5 Pro, безкоштовно, лише Google-акаунт. Підходить для першого дотику до АІ-прототипування — побачити результат одразу і без реєстрації картки.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.codecademy.com/article/google-stitch-tutorial-ai-powered-ui-design-tool" target="_blank">Design Mobile App UI with Google Stitch — Codecademy</a><span class="link-time">15 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">7.4</span><span class="lesson-title-text">Figma Make: інтерактивний прототип з навігацією</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Найближчий до "справжнього" прототипу: кліки, переходи між сторінками, реальна поведінка UI. Ідеальний для демонстрації клієнту — виглядає як продукт, а не макет.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.codecademy.com/article/figma-make-tutorial" target="_blank">Figma Make Tutorial — Codecademy</a><span class="link-time">15 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">7.5</span><span class="lesson-title-text">Lovable: повноцінна веб-апка для демо</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Lovable — це коли клієнту треба "показати, як воно буде працювати", а не просто клікати макет. Генерує реальний front-end код, який можна задеплоїти і дати посилання клієнту.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://uxdesign.cc/getting-started-with-lovable-the-no-hype-beginner-tips-to-building-with-ai-36460d46249d" target="_blank">Getting Started with Lovable: No-Hype Tips — UX Collective</a><span class="link-time">10 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-doc">офіц. доки</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">From Idea to Working App — Lovable Docs</a><span class="link-time">7 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">7.6</span><span class="lesson-title-text">v0: точні веб-компоненти за промптом</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">v0 генерує React/Tailwind компоненти — таблиці, форми, картки, дашборди. Найкращий, коли потрібно показати конкретний елемент UI: "ось так виглядатиме таблиця з фільтрами". Не для повного флоу, а для компонентного рівня.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.datacamp.com/tutorial/vercel-v0" target="_blank">v0 by Vercel: A Guide With Demo Project — DataCamp</a><span class="link-time">12 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Запусти всі 5 інструментів і створи в кожному один однаковий екран (наприклад: "Головна сторінка мобільного застосунку для замовлення їжі"). Порівняй результати у таблиці: швидкість, якість UI, можливість редагування. Час: ~60–90 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Маю практичний досвід усіх 5 інструментів. Знаю коли який обирати залежно від задачі БА.</div>
-          </div>
+            <div class="lesson-foot">~15 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Практика на занятті</div>
+          <div class="practice-text">Кожен учасник перетворює реальні вимоги свого проєкту на структурований промпт за схемою: контекст → платформа (веб/мобайл) → користувач → сценарій → ключові екрани → обмеження. Спікер дає фідбек і показує як ітерувати результат.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Вмію перекладати вимоги у структурований промпт для веб і мобайл. Знаю як ітерувати прототип через чат. Маю реальний прототип зі свого проєкту.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M08 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">08</div>
-          <div class="module-info">
-            <div class="module-title">Від вимог клієнта до екранів</div>
-            <div class="module-desc">Як писати промпти. Мінімальний прототип для валідації. Техніки ітерації.</div>
-            <div class="module-badges">
-              <span class="badge badge-practice">практика</span>
-              <span class="badge-time">~35 хв + прототип</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M09 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">09</div>
+        <div class="mod-info">
+          <div class="mod-title">7 АІ-інструментів: огляд, демо, перший запуск <span class="badge b-up" style="font-size:9px;margin-left:6px">розширено</span></div>
+          <div class="mod-desc">Google Stitch · Claude Design · Figma Make · Lovable · v0 — UI-прототипування. Claude Code · Cursor — АІ-розробка (для розуміння). Live-демо кожного. Мобайл-специфіка.</div>
+          <div class="mod-badges">
+            <span class="badge b-ai">АІ-інструменти</span>
+            <span class="badge b-practice">live-демо</span>
+            <span class="b-time">120 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: навчитись перекладати сирі вимоги клієнта у структуру прототипу. Ключовий навик БА — не "намалювати красиво", а правильно зафіксувати ідею у форматі для перевірки.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">8.1</span><span class="lesson-title-text">Як писати промпти для АІ-прототипування</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Якість промпту = якість прототипу. БА, який вміє чітко формулювати контекст, цільову аудиторію, сценарій і обмеження — отримує значно кращий результат від будь-якого АІ-інструменту.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://stormy.ai/blog/how-to-use-v0-dev-ai-web-development-guide" target="_blank">How to Write Effective Prompts for AI UI Tools — Stormy AI</a><span class="link-time">10 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-doc">шаблон</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">Структура промпту: мета → користувач → екрани → фічі — Lovable Docs</a><span class="link-time">5 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">8.2</span><span class="lesson-title-text">Мінімальний прототип для валідації ідеї</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">"Goldilocks Principle" від NN/g: прототип має бути рівно настільки детальним, щоб відповісти на конкретне питання. Більше — марна трата часу. Менше — незрозуміло клієнту.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes: Lo vs Hi Fidelity — NN/g (фокус: мінімум для валідації)</a><span class="link-time">5 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">8.3</span><span class="lesson-title-text">Ітерація: як уточнювати прототип через чат з АІ</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">АІ-прототипування — це діалог, а не одноразовий запит. Перший результат майже ніколи не фінальний. Техніки ітеративного уточнення: як давати фідбек АІ, коли починати заново, а коли редагувати.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://uxdesign.cc/getting-started-with-lovable-the-no-hype-beginner-tips-to-building-with-ai-36460d46249d" target="_blank">No-Hype Tips: Як ітерувати в Lovable — UX Collective</a><span class="link-time">7 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/case-study-iterative-design-prototyping/" target="_blank">Case Study: Iterative Design and Prototype Testing — NN/g</a><span class="link-time">8 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Перетвори реальні вимоги проєкту на структурований промпт: контекст → користувач → сценарій → ключові екрани → обмеження. Згенеруй прототип. Зроби 2–3 ітерації уточнень. Час: ~60 хв.</div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: зрозуміти для чого кожен інструмент підходить найкраще і отримати перший практичний досвід роботи з кожним під керівництвом спікера.</div>
+
+        <div style="margin: 16px 0 12px; font-size: 12px; font-weight: 600; color: var(--p1); text-transform: uppercase; letter-spacing: .07em;">UI-прототипування (стейкхолдер використовує сам)</div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Мобайл</div>
+            <div class="tool-name">Google Stitch</div>
+            <div class="tool-desc">Найшвидший старт. Текст → мобайл за 90 сек. Gemini 2.5 Pro.</div>
+            <div class="tool-free">✓ Безкоштовно</div>
+            <a class="tool-link" href="https://stitch.withgoogle.com/" target="_blank">stitch.withgoogle.com →</a>
           </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Вмію перекладати вимоги у структурований промпт. Знаю як ітерувати через чат. Маю реальний прототип зі свого проєкту.</div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Концепти</div>
+            <div class="tool-name">Claude Design</div>
+            <div class="tool-desc">UX-консультант і генератор UI-концептів. В парі з іншими інструментами.</div>
+            <div class="tool-free">✓ Безкоштовно</div>
+            <a class="tool-link" href="https://claude.ai/design" target="_blank">claude.ai/design →</a>
           </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Інтерактив</div>
+            <div class="tool-name">Figma Make</div>
+            <div class="tool-desc">Інтерактивний прототип з навігацією. Веб і мобайл. Найближче до продукту.</div>
+            <div class="tool-free">✓ Starter plan</div>
+            <a class="tool-link" href="https://www.figma.com/make/" target="_blank">figma.com/make →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Демо</div>
+            <div class="tool-name">Lovable</div>
+            <div class="tool-desc">Жива веб-апка для демо клієнту. Реальний front-end код.</div>
+            <div class="tool-free">✓ 5 кредитів/день</div>
+            <a class="tool-link" href="https://lovable.dev/" target="_blank">lovable.dev →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-ui">UI · Компоненти</div>
+            <div class="tool-name">v0 (Vercel)</div>
+            <div class="tool-desc">Точні UI-компоненти у React/Tailwind. Для конкретних елементів.</div>
+            <div class="tool-free">✓ Безкоштовний tier</div>
+            <a class="tool-link" href="https://v0.dev/" target="_blank">v0.dev →</a>
+          </div>
+        </div>
+
+        <div style="margin: 20px 0 12px; font-size: 12px; font-weight: 600; color: var(--p3); text-transform: uppercase; letter-spacing: .07em;">АІ-розробка (стейкхолдер розуміє, команда використовує)</div>
+        <div class="tool-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-dev">АІ-розробка · CLI</div>
+            <div class="tool-name">Claude Code</div>
+            <div class="tool-desc">АІ-агент для розробки через термінал. Генерує, редагує і запускає код. Стейкхолдеру — знати для комунікації з dev-командою.</div>
+            <div class="tool-free">✓ Через claude.ai або API</div>
+            <a class="tool-link" href="https://claude.ai/code" target="_blank">docs.claude.ai/code →</a>
+          </div>
+          <div class="tool-card">
+            <div class="tool-cat tool-cat-dev">АІ-розробка · IDE</div>
+            <div class="tool-name">Cursor</div>
+            <div class="tool-desc">АІ-редактор коду з чатом. Дозволяє розробнику генерувати і рефакторити код через природню мову. Стейкхолдеру — знати що це і коли команда це використовує.</div>
+            <div class="tool-free">✓ Безкоштовний план</div>
+            <a class="tool-link" href="https://www.cursor.com/" target="_blank">cursor.com →</a>
+          </div>
+        </div>
+
+        <ul class="lesson-list" style="margin-top: 16px">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.1</span><span class="lesson-title">Google Stitch: покроковий гайд + мобайл-специфіка</span></div>
+            <div class="lesson-why">Найшвидший старт. Gemini 2.5 Pro, безкоштовно. Ідеальний для першого мобайл-прототипу — показати результат за 2 хвилини.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.codecademy.com/article/google-stitch-tutorial-ai-powered-ui-design-tool" target="_blank">Design Mobile App UI with Google Stitch — Codecademy</a><span class="link-time">15 хв</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.2</span><span class="lesson-title">Claude Design: генерація UX-концептів і аналіз прототипів</span></div>
+            <div class="lesson-why">Claude Design — це коли треба обговорити ідею, отримати варіанти рішень або критику прототипу. Не малює пікселі, а думає разом з тобою. Найкраще — у парі з Figma Make або Lovable.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-d">практика</span><a href="https://claude.ai/design" target="_blank">claude.ai/design — спробуй промпт: "Я стейкхолдер, ось вимоги клієнта: [вставити]. Запропонуй структуру user flow для мобайл-апки"</a><span class="link-time">20 хв</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.3</span><span class="lesson-title">Figma Make: інтерактивний прототип з навігацією між екранами</span></div>
+            <div class="lesson-why">Найближчий до "справжнього" продукту: кліки, переходи, реальна поведінка. Підтримує мобайл-фрейми. Ідеальний для демонстрації клієнту.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.codecademy.com/article/figma-make-tutorial" target="_blank">Figma Make Tutorial — Codecademy</a><span class="link-time">15 хв</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.4</span><span class="lesson-title">Lovable: повноцінна веб-апка для демо клієнту</span></div>
+            <div class="lesson-why">Lovable — коли клієнту треба "показати як воно буде працювати", а не просто клікати макет. Генерує реальний front-end код з посиланням для шерингу.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://uxdesign.cc/getting-started-with-lovable-the-no-hype-beginner-tips-to-building-with-ai-36460d46249d" target="_blank">Getting Started with Lovable: No-Hype Tips — UX Collective</a><span class="link-time">10 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-doc">офіц. доки</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">From Idea to Working App — Lovable Docs</a><span class="link-time">7 хв</span></div>
+            </div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">9.5</span><span class="lesson-title">v0: точні UI-компоненти за промптом</span></div>
+            <div class="lesson-why">v0 генерує React/Tailwind компоненти — таблиці, форми, картки, дашборди. Ідеальний коли треба показати конкретний елемент UI, а не повний флоу.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.datacamp.com/tutorial/vercel-v0" target="_blank">v0 by Vercel: A Guide With Demo Project — DataCamp</a><span class="link-time">12 хв</span></div>
+            </div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Live-демо на занятті</div>
+          <div class="practice-text">Спікер live демонструє кожен UI-інструмент (5×15 хв): однаковий сценарій "Мобайл-апка для бронювання сервісу" — один промпт, п'ять різних результатів. Учасники порівнюють: швидкість, якість UI, мобайл-відповідність. Потім — коротка демонстрація Claude Code і Cursor: "ось що робить розробник, коли використовує ці інструменти".</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Маю практичний досвід усіх 5 UI-інструментів. Знаю коли який обирати. Розумію різницю між UI-прототипуванням і АІ-розробкою — і яку роль я граю vs розробник.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M09 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">09</div>
-          <div class="module-info">
-            <div class="module-title">Валідація АІ-концептів</div>
-            <div class="module-desc">Типові помилки АІ. Евристичний аудит свого прототипу. Що переробити, що залишити.</div>
-            <div class="module-badges">
-              <span class="badge badge-ai">АІ-інструменти</span>
-              <span class="badge-time">~57 хв</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M10 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">10</div>
+        <div class="mod-info">
+          <div class="mod-title">Валідація АІ-концептів</div>
+          <div class="mod-desc">Типові помилки АІ-прототипів — окремо для веб і мобайл. Евристичний аудит свого прототипу. Дерево рішень: що переробити, що залишити.</div>
+          <div class="mod-badges">
+            <span class="badge b-practice">практика</span>
+            <span class="badge b-ai">аудит</span>
+            <span class="b-time">90 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: навчитись перевіряти якість АІ-прототипу самостійно — до показу клієнту. БА стає першим фільтром якості, а не транслятором АІ-результату.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">9.1</span><span class="lesson-title-text">Типові помилки АІ-прототипів: список із досвіду</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">АІ стабільно повторює одні й ті ж помилки: ігнорує когнітивне навантаження, порушує евристику H4 (консистентність), генерує "красиві" але нефункціональні макети. Знаючи ці паттерни — знаходиш проблеми за хвилини.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ux-reset-2025/" target="_blank">The UX Reckoning 2025: де АІ досі слабкий — NN/g</a><span class="link-time">8 хв</span></div>
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank">Minimize Cognitive Load — NN/g (де АІ перевантажує екран)</a><span class="link-time">5 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">9.2</span><span class="lesson-title-text">Застосування воркбуку евристик до свого прототипу</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Повернення до воркбуку — але тепер застосовуємо його до реального АІ-прототипу, а не чужого скриншоту. Це і є кінцева навичка курсу: вміти сказати "ось тут проблема, і ось чому" мовою принципів.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-doc">воркбук</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g: застосувати до свого прототипу</a><span class="link-time">40 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">9.3</span><span class="lesson-title-text">Коли переробити промпт, а коли залишити як є</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Не кожна проблема АІ-прототипу вартує переробки. Як визначити пріоритет правок для lo-fi прототипу на стадії валідації ідеї — практичне дерево рішень.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes — NN/g (розділ про "достатньо добрий прототип")</a><span class="link-time">4 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box">
-            <div class="practice-label">Практичне завдання</div>
-            <div class="practice-text">Відкрий прототип з модуля 08. Знайди мінімум 3 конкретні проблеми з аргументами: "Порушена евристика H4 — кнопки мають 3 різних стилі". Для кожної вирішіть: переробити, відредагувати, залишити. Час: ~45 хв.</div>
-          </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат модуля</div>
-            <div class="outcome-text">Вмію знаходити типові помилки АІ-прототипів і аргументувати їх принципами. Маю досвід евристичного аудиту власного прототипу.</div>
-          </div>
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: навчитись перевіряти якість АІ-прототипу самостійно — до показу клієнту. Стейкхолдер стає першим фільтром якості, а не транслятором АІ-результату.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">10.1</span><span class="lesson-title">Типові помилки АІ-прототипів: веб і мобайл окремо</span></div>
+            <div class="lesson-why">АІ стабільно повторює одні й ті ж помилки. На мобайлі це: ігнорування safe areas, замалі touch-таргети, копіювання веб-навігації. На вебі — перевантаження інформацією, порушення ієрархії.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/ux-reset-2025/" target="_blank">The UX Reckoning 2025: де АІ-інструменти досі слабкі — NN/g</a><span class="link-time">8 хв</span></div>
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank">Minimize Cognitive Load — NN/g (де АІ перевантажує екран)</a><span class="link-time">5 хв</span></div>
+            </div>
+            <div class="lesson-foot">~13 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">10.2</span><span class="lesson-title">Застосування воркбуку евристик до свого прототипу</span></div>
+            <div class="lesson-why">Повернення до воркбуку — але тепер застосовуємо його до реального АІ-прототипу, а не чужого скриншоту. Це і є кінцева навичка курсу: вміти сказати "ось тут проблема, і ось чому" мовою принципів.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-doc">воркбук</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g: застосувати до свого прототипу</a><span class="link-time">40 хв</span></div>
+            </div>
+            <div class="lesson-foot">~40 хв (практика)</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">10.3</span><span class="lesson-title">Коли переробити промпт, коли відредагувати, коли залишити</span></div>
+            <div class="lesson-why">Не кожна проблема АІ-прототипу вартує переробки. Практичне дерево рішень: критичні помилки (ламають логіку) vs естетичні (можна залишити для lo-fi рівня).</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/" target="_blank">UX Prototypes — NN/g (розділ про "достатньо добрий прототип")</a><span class="link-time">4 хв</span></div>
+            </div>
+            <div class="lesson-foot">~4 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box">
+          <div class="practice-label">Аудит на занятті</div>
+          <div class="practice-text">Кожен учасник відкриває прототип з модуля 08 і проходить евристичний чекліст — окремо для веб і мобайл аспектів. Знаходить мінімум 3 конкретні проблеми з аргументами. Спікер розбирає типові помилки групи.</div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат модуля</div>
+          <div class="outcome-text">Вмію знаходити типові помилки АІ-прототипів і аргументувати їх принципами — окремо для веб і мобайл. Маю досвід евристичного аудиту власного прототипу.</div>
         </div>
       </div>
+    </div>
 
-      <!-- M10 -->
-      <div class="module-card" onclick="toggleModule(this)">
-        <div class="module-head">
-          <div class="module-num">10</div>
-          <div class="module-info">
-            <div class="module-title">Прототип на захист вимог</div>
-            <div class="module-desc">Як показувати прототип клієнту. Документування рішень. Фінальний проєкт курсу.</div>
-            <div class="module-badges">
-              <span class="badge badge-practice">практика</span>
-              <span class="badge-time">~90 хв фінальний проєкт</span>
-              <span class="mentor-badge"><span class="mentor-avatar">NS</span>Ментор: Name Surname</span>
-            </div>
+    <!-- M11 -->
+    <div class="module-card" onclick="toggleModule(this)">
+      <div class="module-head">
+        <div class="mod-num">11</div>
+        <div class="mod-info">
+          <div class="mod-title">Прототип на захист вимог: фінальний проєкт</div>
+          <div class="mod-desc">Повний цикл: вимоги → journey map → АІ-прототип → евристичний аудит → сценарій показу клієнту. Захист перед групою, фідбек спікера.</div>
+          <div class="mod-badges">
+            <span class="badge b-practice">фінальний проєкт</span>
+            <span class="badge b-practice">захист</span>
+            <span class="b-time">120 хв</span>
           </div>
-          <div class="toggle-arrow">▾</div>
         </div>
-        <div class="module-body">
-          <div class="module-goal">Мета: навчитись використовувати прототип як інструмент валідації вимог у розмові з клієнтом — не як "красиву картинку", а як структурований аргумент.</div>
-          <ul class="lesson-list">
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">10.1</span><span class="lesson-title-text">Як показувати прототип клієнту: що говорити, що ні</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Прототип — це питання, а не відповідь. Правильна техніка показу: не "ось що ми зробили", а "допоможи нам перевірити, чи правильно ми зрозуміли". Це фундаментальна зміна підходу для БА.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/usability-testing-101/" target="_blank">Usability Testing 101 — NN/g (техніка для показу прототипу клієнту)</a><span class="link-time">7 хв</span></div>
-              </div>
-            </li>
-            <div class="lesson-divider"></div>
-            <li class="lesson-item">
-              <div class="lesson-num-title"><span class="lesson-num">10.2</span><span class="lesson-title-text">Документування рішень після сесії з клієнтом</span></div>
-              <div class="lesson-desc" style="padding-left:38px;font-size:12px;color:var(--c-muted);line-height:1.55;margin-bottom:6px;">Після показу прототипу клієнт дає фідбек. Як правильно його зафіксувати: що змінити у вимогах, що перевірити в наступній ітерації. Це закриває петлю між прототипом і специфікацією.</div>
-              <div class="lesson-links">
-                <div class="lesson-link"><span class="link-type lt-article">стаття</span><a href="https://www.nngroup.com/articles/analyze-customer-journey-map/" target="_blank">7 Ways to Analyze a Customer Journey Map — NN/g</a><span class="link-time">7 хв</span></div>
-              </div>
-            </li>
-          </ul>
-          <div class="practice-box" style="background:#EEEDFC;border-color:#3B32A8;">
-            <div class="practice-label" style="color:#3B32A8;">🎯 Фінальний проєкт курсу</div>
-            <div class="practice-text">Повний цикл БА → прототип → валідація:<br><br>
-              1. Візьми реальний або вигаданий запит клієнта (1 абзац вимог)<br>
-              2. Побудуй user journey map<br>
-              3. Вибери АІ-інструмент і згенеруй прототип (3–5 екранів)<br>
-              4. Проведи евристичний аудит за воркбуком NN/g<br>
-              5. Підготуй сценарій показу: 3 питання для клієнта<br>
-              6. Запиши: які вимоги уточнились після перегляду прототипу<br><br>
-              Мета — доведений цикл думки, а не красивий прототип. Час: ~90 хв.
+        <div class="toggle-arrow">▾</div>
+      </div>
+      <div class="module-body">
+        <div class="mod-goal">Мета: пройти повний цикл стейкхолдера — від вимог до прототипу — і захистити його перед групою. Це і є результат усього курсу.</div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">11.1</span><span class="lesson-title">Як показувати прототип клієнту: що говорити, що ні</span></div>
+            <div class="lesson-why">Прототип — це питання, а не відповідь. Правильна техніка: не "ось що ми зробили", а "допоможи нам перевірити". Для мобайлу — завжди показувати на реальному пристрої.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/usability-testing-101/" target="_blank">Usability Testing 101 — NN/g</a><span class="link-time">7 хв</span></div>
             </div>
+            <div class="lesson-foot">~7 хв</div>
+          </li>
+          <div class="lesson-divider"></div>
+          <li class="lesson-item">
+            <div class="lesson-head"><span class="lesson-n">11.2</span><span class="lesson-title">Документування рішень після сесії з клієнтом</span></div>
+            <div class="lesson-why">Після показу прототипу клієнт дає фідбек. Як правильно зафіксувати: що змінити у вимогах, що перевірити в наступній ітерації — це закриває петлю між прототипом і специфікацією.</div>
+            <div class="lesson-links">
+              <div class="lesson-link"><span class="link-type lt-a">стаття</span><a href="https://www.nngroup.com/articles/analyze-customer-journey-map/" target="_blank">7 Ways to Analyze a Customer Journey Map — NN/g</a><span class="link-time">7 хв</span></div>
+            </div>
+            <div class="lesson-foot">~7 хв</div>
+          </li>
+        </ul>
+        <div class="practice-box" style="background:var(--p1-light);border-color:var(--p1)">
+          <div class="practice-label" style="color:var(--p1)">🎯 Фінальний проєкт — захист перед групою</div>
+          <div class="practice-text">Повний цикл стейкхолдера:<br><br>
+            1. Візьми реальний або вигаданий запит клієнта (1 абзац вимог)<br>
+            2. Побудуй user journey map<br>
+            3. Вибери АІ-інструмент і згенеруй прототип (3–5 екранів) — веб або мобайл<br>
+            4. Проведи евристичний аудит за воркбуком NN/g<br>
+            5. Підготуй сценарій показу: 3 питання, які ти хочеш перевірити з клієнтом<br>
+            6. Захисти перед групою (5 хв) — спікер і учасники дають фідбек<br><br>
+            Оцінка: чи є чіткий user flow, чи прототип відповідає вимогам, чи аудит виявив реальні проблеми.
           </div>
-          <div class="outcome-box">
-            <div class="outcome-label">Результат Фази 3 і всього курсу</div>
-            <div class="outcome-text">Пройшов повний цикл: вимоги → journey → прототип → аудит → валідація → уточнення вимог. Маю практичний інструментарій для роботи з клієнтами.</div>
-          </div>
+        </div>
+        <div class="outcome-box">
+          <div class="outcome-label">Результат курсу</div>
+          <div class="outcome-text">Пройшов повний цикл: вимоги → journey → прототип (веб або мобайл) → евристичний аудит → валідація з клієнтом. Маю практичний інструментарій і розуміння принципів якісного UX.</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1061,35 +1256,17 @@
 <!-- TOOLS -->
 <section id="tools">
   <div class="container">
-    <div class="section-label">Модуль 07</div>
-    <h2 class="section-title">5 АІ-інструментів курсу</h2>
-    <p class="section-sub">Усі інструменти мають безкоштовний рівень. Реєстрація займає до 2 хвилин.</p>
+    <div class="section-eyebrow">Модуль 09</div>
+    <h2 class="section-title">7 АІ-інструментів курсу</h2>
+    <p class="section-sub">5 для UI-прототипування (стейкхолдер використовує сам) + 2 для розуміння АІ-розробки.</p>
     <div class="summary-grid">
-      <div class="summary-card">
-        <div style="font-size:13px;font-weight:700;margin-bottom:6px">Google Stitch</div>
-        <div style="font-size:12px;color:var(--c-muted);margin-bottom:10px">Найшвидший старт. Мобайл за 90 сек.</div>
-        <a href="https://stitch.withgoogle.com/" target="_blank" style="font-size:12px;color:var(--c-phase1);text-decoration:none;font-weight:500">stitch.withgoogle.com →</a>
-      </div>
-      <div class="summary-card">
-        <div style="font-size:13px;font-weight:700;margin-bottom:6px">Claude</div>
-        <div style="font-size:12px;color:var(--c-muted);margin-bottom:10px">UX-консультант і генератор концептів.</div>
-        <a href="https://claude.ai/" target="_blank" style="font-size:12px;color:var(--c-phase1);text-decoration:none;font-weight:500">claude.ai →</a>
-      </div>
-      <div class="summary-card">
-        <div style="font-size:13px;font-weight:700;margin-bottom:6px">Figma Make</div>
-        <div style="font-size:12px;color:var(--c-muted);margin-bottom:10px">Інтерактивний прототип з навігацією.</div>
-        <a href="https://www.figma.com/make/" target="_blank" style="font-size:12px;color:var(--c-phase1);text-decoration:none;font-weight:500">figma.com/make →</a>
-      </div>
-      <div class="summary-card">
-        <div style="font-size:13px;font-weight:700;margin-bottom:6px">Lovable</div>
-        <div style="font-size:12px;color:var(--c-muted);margin-bottom:10px">Жива веб-апка для демо клієнту.</div>
-        <a href="https://lovable.dev/" target="_blank" style="font-size:12px;color:var(--c-phase1);text-decoration:none;font-weight:500">lovable.dev →</a>
-      </div>
-      <div class="summary-card">
-        <div style="font-size:13px;font-weight:700;margin-bottom:6px">v0 by Vercel</div>
-        <div style="font-size:12px;color:var(--c-muted);margin-bottom:10px">Точні UI-компоненти у React/Tailwind.</div>
-        <a href="https://v0.dev/" target="_blank" style="font-size:12px;color:var(--c-phase1);text-decoration:none;font-weight:500">v0.dev →</a>
-      </div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Мобайл</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Google Stitch</div><a href="https://stitch.withgoogle.com/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">stitch.withgoogle.com →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Концепти</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Claude Design</div><a href="https://claude.ai/design" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">claude.ai/design →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Інтерактив</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Figma Make</div><a href="https://www.figma.com/make/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">figma.com/make →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Живе демо</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Lovable</div><a href="https://lovable.dev/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">lovable.dev →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Компоненти</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">v0 (Vercel)</div><a href="https://v0.dev/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">v0.dev →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">АІ-розробка</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Claude Code</div><a href="https://claude.ai/code" target="_blank" style="font-size:12px;color:var(--p3);text-decoration:none">docs.claude.ai/code →</a></div>
+      <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">АІ-розробка</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Cursor</div><a href="https://www.cursor.com/" target="_blank" style="font-size:12px;color:var(--p3);text-decoration:none">cursor.com →</a></div>
     </div>
   </div>
 </section>
@@ -1097,24 +1274,35 @@
 <!-- SUMMARY -->
 <section id="summary">
   <div class="container">
-    <div class="section-label">Підсумок курсу</div>
-    <h2 class="section-title">Що вміє БА після курсу</h2>
+    <div class="section-eyebrow">Підсумок курсу</div>
+    <h2 class="section-title">Що вміє стейкхолдер після курсу</h2>
     <p class="section-sub">Повний цикл від вимог до валідованого прототипу — самостійно, без дизайнера на кожному кроці.</p>
     <div class="summary-grid">
-      <div class="summary-card"><div class="summary-n" style="color:var(--c-phase1)">~16</div><div class="summary-l">Годин контенту</div></div>
-      <div class="summary-card"><div class="summary-n" style="color:var(--c-phase2)">10</div><div class="summary-l">Модулів</div></div>
-      <div class="summary-card"><div class="summary-n" style="color:var(--c-phase3)">5</div><div class="summary-l">АІ-інструментів</div></div>
-      <div class="summary-card"><div class="summary-n" style="color:var(--c-text)">100%</div><div class="summary-l">Безкоштовні матеріали</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p1)">~21</div><div class="summary-l">Годин навчання</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p2)">11</div><div class="summary-l">Модулів</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p3)">3</div><div class="summary-l">Спікери по фазах</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--text)">7</div><div class="summary-l">АІ-інструментів</div></div>
+      <div class="summary-card"><div class="summary-n" style="color:var(--p2)">60/40</div><div class="summary-l">Веб / Мобайл</div></div>
     </div>
-    <div style="margin-top:24px;padding:24px;background:var(--c-surface);border:1px solid var(--c-border);border-radius:14px;">
-      <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--c-muted);text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">Навички після курсу</div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:24px;height:24px;border-radius:50%;background:var(--c-phase1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span><span style="font-size:13px;line-height:1.5;">Читає і критикує будь-який інтерфейс мовою принципів — евристики, ієрархія, когнітивне навантаження</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:24px;height:24px;border-radius:50%;background:var(--c-phase1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span><span style="font-size:13px;line-height:1.5;">Будує user journey map і user flow з клієнтських вимог до початку прототипування</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:24px;height:24px;border-radius:50%;background:var(--c-phase2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span><span style="font-size:13px;line-height:1.5;">Обирає правильний АІ-інструмент під задачу і генерує прототип за структурованим промптом</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:24px;height:24px;border-radius:50%;background:var(--c-phase2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span><span style="font-size:13px;line-height:1.5;">Проводить евристичний аудит прототипу і знаходить UX-проблеми до показу клієнту</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:24px;height:24px;border-radius:50%;background:var(--c-phase3);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</span><span style="font-size:13px;line-height:1.5;">Використовує прототип як інструмент валідації вимог у розмові з клієнтом або стейкхолдером</span></div>
+
+    <div style="margin-top:20px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r)">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--subtle);margin-bottom:14px">Навички після курсу</div>
+      <div class="skills-list">
+        <div class="skill-item"><span class="skill-num" style="background:var(--p1)">1</span><span class="skill-text">Читає і критикує будь-який веб або мобайл інтерфейс мовою принципів — евристики, ієрархія, когнітивне навантаження, мобайл-специфіка</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p1)">2</span><span class="skill-text">Розуміє дизайн-систему: компоненти, токени, патерни — може читати Figma-бібліотеку і формулювати точні вимоги до команди</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p2)">3</span><span class="skill-text">Будує user journey map і user flow з клієнтських вимог — окремо для веб і мобайл контексту</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p2)">4</span><span class="skill-text">Обирає правильний АІ-інструмент під задачу і генерує прототип за структурованим промптом — веб або мобайл</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p3)">5</span><span class="skill-text">Проводить евристичний аудит прототипу і знаходить UX-проблеми до показу клієнту — аргументами, а не відчуттями</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p3)">6</span><span class="skill-text">Використовує прототип як інструмент валідації вимог у розмові з клієнтом або стейкхолдером — правильна техніка показу</span></div>
       </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="badge b-theory">лекція</span>спікер веде</div>
+      <div class="legend-item"><span class="badge b-practice">практика / воркшоп</span>учасники роблять</div>
+      <div class="legend-item"><span class="badge b-ai">АІ-інструменти</span>live-демо і практика</div>
+      <div class="legend-item"><span class="badge b-new">новий</span>новий модуль у v3.0</div>
+      <div class="legend-item"><span class="badge b-up">↑ оновлено</span>суттєво розширено</div>
     </div>
   </div>
 </section>
@@ -1122,9 +1310,9 @@
 </main>
 
 <footer class="footer">
-  <strong>UI/UX Design та АІ-прототипування для бізнес-аналітиків</strong><br>
-  Внутрішній навчальний курс · Самостійне навчання · Усі зовнішні матеріали безкоштовні<br>
-  Основне джерело: <a href="https://www.nngroup.com/" target="_blank" style="color:rgba(247,244,239,0.5)">Nielsen Norman Group (nngroup.com)</a>
+  <strong>UI/UX Design та АІ-прототипування для стейкхолдерів</strong><br>
+  Навчальний курс зі спікерами · Версія 3.0 · 2025–2026<br>
+  Основне джерело матеріалів: <a href="https://www.nngroup.com/" target="_blank" style="color:rgba(245,241,235,.4)">Nielsen Norman Group (nngroup.com)</a>
 </footer>
 
 <script>
@@ -1132,15 +1320,14 @@ function toggleModule(card) {
   const body = card.querySelector('.module-body');
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
-  card.classList.toggle('expanded', !isOpen);
+  card.classList.toggle('open', !isOpen);
 }
 
 function expandAll() {
   document.querySelectorAll('.module-body').forEach(b => b.classList.add('open'));
-  document.querySelectorAll('.module-card').forEach(c => c.classList.add('expanded'));
+  document.querySelectorAll('.module-card').forEach(c => c.classList.add('open'));
 }
 
-// Active nav on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 window.addEventListener('scroll', () => {
