@@ -4,30 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UI/UX Design & AI Prototyping — Training Course</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #F5F1EB;
+  --bg: #EBF4FB;
   --surface: #FFFFFF;
-  --border: #DDD7CC;
-  --border-light: #EAE5DC;
-  --text: #1C1814;
-  --muted: #78706A;
-  --subtle: #A89F98;
-  --p1: #2E28A0;
-  --p1-light: #ECEBF9;
-  --p2: #156048;
-  --p2-light: #E2F4EE;
-  --p3: #A85410;
-  --p3-light: #FAF0E4;
-  --new: #7C3E0A;
-  --new-light: #FEF3E2;
-  --up: #0A5472;
-  --up-light: #E1F4FB;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --border: #CCDDE8;
+  --border-light: #DDE9F2;
+  --text: #0A1929;
+  --muted: #72757C;
+  --subtle: #9EA3AA;
+  --p1: #0058E9;
+  --p1-light: #EAF0FF;
+  --p2: #2F8A5B;
+  --p2-light: #E4F5ED;
+  --p3: #EA9810;
+  --p3-light: #FEF3DC;
+  --new: #C4750A;
+  --new-light: #FEF3DC;
+  --up: #006FA6;
+  --up-light: #DDF0FA;
+  --brand: #00416E;
+  --brand-light: #EBF4FB;
+  --accent: #03A9F4;
+  --font-display: 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
   --r: 12px;
   --r-sm: 6px;
 }
@@ -43,7 +46,7 @@ body {
 
 /* ── HERO ── */
 .hero {
-  background: var(--text);
+  background: var(--brand);
   color: var(--bg);
   padding: 80px 40px 72px;
   position: relative;
@@ -55,7 +58,7 @@ body {
   top: -160px; right: -100px;
   width: 600px; height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(46,40,160,.3) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(3,169,244,.25) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero::after {
@@ -64,36 +67,36 @@ body {
   bottom: -80px; left: 15%;
   width: 400px; height: 400px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168,84,16,.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(0,88,233,.2) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
 .hero-eyebrow {
   font-size: 11px; font-weight: 500; letter-spacing: .14em;
-  text-transform: uppercase; color: rgba(245,241,235,.45); margin-bottom: 20px;
+  text-transform: uppercase; color: rgba(235,244,251,.5); margin-bottom: 20px;
 }
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(38px, 5.5vw, 62px);
   line-height: 1.08; letter-spacing: -.02em;
-  margin-bottom: 22px; font-weight: 400;
+  margin-bottom: 22px; font-weight: 700;
 }
-.hero-title em { font-style: italic; color: rgba(245,241,235,.55); }
+.hero-title em { font-style: normal; font-weight: 300; color: rgba(235,244,251,.6); }
 .hero-sub {
-  font-size: 16px; color: rgba(245,241,235,.65);
+  font-size: 16px; color: rgba(235,244,251,.7);
   max-width: 540px; line-height: 1.7; margin-bottom: 48px;
 }
 .hero-stats {
   display: flex; gap: 40px; flex-wrap: wrap;
-  border-top: 1px solid rgba(245,241,235,.12); padding-top: 32px;
+  border-top: 1px solid rgba(235,244,251,.15); padding-top: 32px;
 }
-.stat-n { font-family: var(--font-display); font-size: 34px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
-.stat-l { font-size: 11px; color: rgba(245,241,235,.45); letter-spacing: .04em; }
+.stat-n { font-family: var(--font-display); font-size: 34px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+.stat-l { font-size: 11px; color: rgba(235,244,251,.45); letter-spacing: .04em; }
 
 /* ── NAV ── */
 .sticky-nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(245,241,235,.94);
+  background: rgba(235,244,251,.95);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   padding: 0 32px;
@@ -110,8 +113,8 @@ body {
   border-bottom: 2px solid transparent;
   transition: color .18s, border-color .18s;
 }
-.nav-link:hover { color: var(--text); }
-.nav-link.active { color: var(--text); border-bottom-color: var(--text); }
+.nav-link:hover { color: var(--brand); }
+.nav-link.active { color: var(--brand); border-bottom-color: var(--brand); }
 
 /* ── LAYOUT ── */
 .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
@@ -124,7 +127,7 @@ section + section { border-top: 1px solid var(--border); }
 }
 .section-title {
   font-family: var(--font-display); font-size: 30px;
-  font-weight: 400; line-height: 1.18; margin-bottom: 6px;
+  font-weight: 600; line-height: 1.18; margin-bottom: 6px;
 }
 .section-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
 
@@ -159,7 +162,7 @@ section + section { border-top: 1px solid var(--border); }
   font-family: var(--font-body); transition: opacity .15s;
 }
 .btn:hover { opacity: .8; }
-.btn-dark { background: var(--text); color: var(--bg); }
+.btn-dark { background: var(--brand); color: var(--bg); }
 .btn-light { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
 
 /* ── PHASE SECTION HEADER ── */
@@ -185,9 +188,9 @@ section + section { border-top: 1px solid var(--border); }
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
 }
-.av1 { background: linear-gradient(135deg, #2E28A0, #6B5CE7); }
-.av2 { background: linear-gradient(135deg, #156048, #2AB87B); }
-.av3 { background: linear-gradient(135deg, #A85410, #E8891A); }
+.av1 { background: linear-gradient(135deg, #0058E9, #03A9F4); }
+.av2 { background: linear-gradient(135deg, #2F8A5B, #3DB87B); }
+.av3 { background: linear-gradient(135deg, #EA9810, #F5BF40); }
 .speaker-info { flex: 1; }
 .speaker-role { font-size: 11px; color: var(--subtle); }
 .speaker-name { font-size: 13px; font-weight: 600; color: var(--text); }
@@ -211,7 +214,7 @@ section + section { border-top: 1px solid var(--border); }
   padding: 18px 22px; cursor: pointer;
 }
 .mod-num {
-  font-family: var(--font-display); font-size: 20px; font-weight: 300;
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
   color: var(--border); flex-shrink: 0; line-height: 1.1;
   padding-top: 2px; min-width: 30px;
 }
@@ -274,8 +277,8 @@ section + section { border-top: 1px solid var(--border); }
 .lt-d  { background: var(--p3-light); color: var(--p3); }
 .lt-doc{ background: #FDE8E2; color: #7A2010; }
 .lt-tool{ background: #F3F0FB; color: #4A3DA8; }
-.lesson-link a { font-size: 12px; color: var(--p1); text-decoration: none; line-height: 1.5; }
-.lesson-link a:hover { text-decoration: underline; }
+.lesson-link a { font-size: 12px; color: var(--brand); text-decoration: none; line-height: 1.5; }
+.lesson-link a:hover { text-decoration: underline; color: var(--accent); }
 .link-time { font-size: 11px; color: var(--subtle); white-space: nowrap; flex-shrink: 0; padding-top: 2px; margin-left: auto; }
 .lesson-divider { height: 1px; background: var(--border-light); margin: 4px 0 4px 38px; }
 .lesson-foot { padding-left: 38px; font-size: 11px; color: var(--subtle); margin-top: 4px; }
@@ -318,8 +321,8 @@ section + section { border-top: 1px solid var(--border); }
 .tool-cat-ui { color: var(--p1); }
 .tool-cat-dev { color: var(--p3); }
 .tool-free { font-size: 10px; color: var(--p2); font-weight: 600; margin-bottom: 4px; }
-.tool-link { font-size: 11px; color: var(--p1); text-decoration: none; }
-.tool-link:hover { text-decoration: underline; }
+.tool-link { font-size: 11px; color: var(--brand); text-decoration: none; }
+.tool-link:hover { text-decoration: underline; color: var(--accent); }
 
 /* ── SUMMARY ── */
 .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
@@ -327,7 +330,7 @@ section + section { border-top: 1px solid var(--border); }
   padding: 20px; background: var(--surface);
   border: 1px solid var(--border); border-radius: var(--r);
 }
-.summary-n { font-family: var(--font-display); font-size: 36px; font-weight: 300; line-height: 1; margin-bottom: 6px; }
+.summary-n { font-family: var(--font-display); font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
 .summary-l { font-size: 12px; color: var(--muted); }
 
 .skills-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
@@ -349,7 +352,7 @@ section + section { border-top: 1px solid var(--border); }
 
 /* ── FOOTER ── */
 .footer {
-  background: var(--text); color: rgba(245,241,235,.45);
+  background: var(--brand); color: rgba(235,244,251,.5);
   padding: 40px 32px; text-align: center; font-size: 12px;
 }
 .footer strong { color: var(--bg); }
@@ -377,8 +380,8 @@ section + section { border-top: 1px solid var(--border); }
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Training Course with Speakers · Version 3.0 · 2025–2026</div>
-    <h1 class="hero-title">UI/UX Design<br>and <em>AI Prototyping</em><br>for Stakeholders</h1>
-    <p class="hero-sub">A course for stakeholders who want to independently create web and mobile app prototypes, validate ideas with clients, and evaluate the quality of AI-generated design concepts.</p>
+    <h1 class="hero-title">UI/UX Design<br>and <em>AI Prototyping</em><br>for Business Analysts</h1>
+    <p class="hero-sub">A course for business analysts who want to independently create web and mobile app prototypes, validate ideas with clients, and evaluate the quality of AI-generated design concepts.</p>
     <div class="hero-stats">
       <div><div class="stat-n">3</div><div class="stat-l">Phases · 3 Speakers</div></div>
       <div><div class="stat-n">11</div><div class="stat-l">Modules</div></div>
@@ -465,7 +468,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="mod-num">01</div>
         <div class="mod-info">
           <div class="mod-title">How Users Think</div>
-          <div class="mod-desc">UX as behavioral logic. Mental models, jobs-to-be-done, user journey. The difference between stakeholder expectations and end-user needs.</div>
+          <div class="mod-desc">UX as behavioral logic. Mental models, jobs-to-be-done, user journey. The difference between business analyst expectations and end-user needs.</div>
           <div class="mod-badges">
             <span class="badge b-theory">lecture</span>
             <span class="badge b-practice">workshop</span>
@@ -475,11 +478,11 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: understand that UX is not about style or taste — it's about human behavioral logic. Learn to look at a product through the user's eyes, not the stakeholder's.</div>
+        <div class="mod-goal">Goal: understand that UX is not about style or taste — it's about human behavioral logic. Learn to look at a product through the user's eyes, not the business analyst's.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">1.1</span><span class="lesson-title">What is UX and how does it differ from UI</span></div>
-            <div class="lesson-why">Core definitions that build the right vocabulary. Without this, stakeholders confuse "beautiful" with "usable" — and those are different things.</div>
+            <div class="lesson-why">Core definitions that build the right vocabulary. Without this, business analysts confuse "beautiful" with "usable" — and those are different things.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/definition-user-experience/" target="_blank">The Definition of User Experience — NN/g</a><span class="link-time">5 min</span></div>
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/usability-101-introduction-to-usability/" target="_blank">Usability 101: Introduction to Usability — NN/g</a><span class="link-time">5 min</span></div>
@@ -500,7 +503,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">1.3</span><span class="lesson-title">User Journey Map: the path from task to outcome</span></div>
-            <div class="lesson-why">A tool stakeholders can use right now during requirements gathering — before any prototype. Helps document the full user path and identify gaps in client requirements.</div>
+            <div class="lesson-why">A tool business analysts can use right now during requirements gathering — before any prototype. Helps document the full user path and identify gaps in client requirements.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/journey-mapping-101/" target="_blank">Journey Mapping 101 — NN/g</a><span class="link-time">6 min</span></div>
               <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.nngroup.com/videos/journey-mapping-101/" target="_blank">Customer Journey Mapping 101 — NN/g</a><span class="link-time">5 min</span></div>
@@ -510,7 +513,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">1.4</span><span class="lesson-title">Human-Centered Design: the approach behind everything</span></div>
-            <div class="lesson-why">Design Thinking and HCD — the frameworks behind modern UX practice. A stakeholder who understands this approach structures requirements gathering and idea validation more effectively.</div>
+            <div class="lesson-why">Design Thinking and HCD — the frameworks behind modern UX practice. A business analyst who understands this approach structures requirements gathering and idea validation more effectively.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-thinking/" target="_blank">Design Thinking 101 — NN/g</a><span class="link-time">6 min</span></div>
               <div class="lesson-link"><span class="link-type lt-v">video</span><a href="https://www.youtube.com/watch?v=_r0VX-aU_T8" target="_blank">What is Human-Centered Design? — IDEO</a><span class="link-time">4 min</span></div>
@@ -520,7 +523,7 @@ section + section { border-top: 1px solid var(--border); }
         </ul>
         <div class="practice-box">
           <div class="practice-label">In-class Workshop</div>
-          <div class="practice-text">The speaker and group build a user journey map together based on a real project from one of the participants. Each stakeholder documents the user's steps, expectations, and pain points for their own product. Group discussion follows. Time: ~30 min within the session.</div>
+          <div class="practice-text">The speaker and group build a user journey map together based on a real project from one of the participants. Each business analyst documents the user's steps, expectations, and pain points for their own product. Group discussion follows. Time: ~30 min within the session.</div>
         </div>
         <div class="outcome-box">
           <div class="outcome-label">Module Outcome</div>
@@ -549,7 +552,7 @@ section + section { border-top: 1px solid var(--border); }
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">2.1</span><span class="lesson-title">Screen anatomy: zones, elements, patterns</span></div>
-            <div class="lesson-why">Every interface is a set of typical zones and components. Recognizing them allows stakeholders to translate client requirements into screen structures much faster.</div>
+            <div class="lesson-why">Every interface is a set of typical zones and components. Recognizing them allows business analysts to translate client requirements into screen structures much faster.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-pattern-guidelines-study-guide/" target="_blank">Design-Pattern Guidelines: Study Guide — NN/g</a><span class="link-time">6 min</span></div>
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/web-ux-study-guide/" target="_blank">Web UX: Study Guide — NN/g</a><span class="link-time">8 min</span></div>
@@ -570,7 +573,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">2.3</span><span class="lesson-title">Mobile navigation patterns and iOS vs Android</span></div>
-            <div class="lesson-why">Tab bar, bottom navigation, hamburger, navigation hub — each pattern has its own logic. iOS and Android follow different conventions that stakeholders need to distinguish when gathering requirements.</div>
+            <div class="lesson-why">Tab bar, bottom navigation, hamburger, navigation hub — each pattern has its own logic. iOS and Android follow different conventions that business analysts need to distinguish when gathering requirements.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/mobile-navigation-patterns/" target="_blank">Basic Patterns for Mobile Navigation — NN/g</a><span class="link-time">8 min</span></div>
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://developer.apple.com/design/human-interface-guidelines/designing-for-ios" target="_blank">Designing for iOS — Apple HIG</a><span class="link-time">8 min</span></div>
@@ -581,7 +584,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">2.4</span><span class="lesson-title">Responsive vs Adaptive: one product across multiple screens</span></div>
-            <div class="lesson-why">Critical for stakeholders gathering requirements for products that need to work on both web and mobile. This affects requirements, not just design.</div>
+            <div class="lesson-why">Critical for business analysts gathering requirements for products that need to work on both web and mobile. This affects requirements, not just design.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/mobile-first-not-mobile-only/" target="_blank">Mobile First Is NOT Mobile Only — NN/g</a><span class="link-time">7 min</span></div>
             </div>
@@ -615,7 +618,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: build a concrete vocabulary and criteria for evaluating UI quality. After this module, stakeholders can talk about design using facts, not feelings.</div>
+        <div class="mod-goal">Goal: build a concrete vocabulary and criteria for evaluating UI quality. After this module, business analysts can talk about design using facts, not feelings.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">3.1</span><span class="lesson-title">5 principles of visual design in UX</span></div>
@@ -665,7 +668,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="mod-num">04</div>
         <div class="mod-info">
           <div class="mod-title">Design System: Components, Tokens, How to Read One <span class="badge b-new" style="font-size:9px;margin-left:6px">new</span></div>
-          <div class="mod-desc">What a design system is and why stakeholders need it. Components, tokens, styles. How to read a Figma library. Review of real systems: Material 3, Apple HIG, Atlassian.</div>
+          <div class="mod-desc">What a design system is and why business analysts need it. Components, tokens, styles. How to read a Figma library. Review of real systems: Material 3, Apple HIG, Atlassian.</div>
           <div class="mod-badges">
             <span class="badge b-theory">lecture</span>
             <span class="badge b-practice">Figma file walkthrough</span>
@@ -675,11 +678,11 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: understand what a design system is and how it affects requirements and prototyping. Stakeholders should be able to "read" a system — like a shared vocabulary for working with the design team.</div>
+        <div class="mod-goal">Goal: understand what a design system is and how it affects requirements and prototyping. Business Analysts should be able to "read" a system — like a shared vocabulary for working with the design team.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
-            <div class="lesson-head"><span class="lesson-n">4.1</span><span class="lesson-title">What is a design system and why does it matter to stakeholders</span></div>
-            <div class="lesson-why">A design system is not just a component library. It's the shared language between designers and developers. Stakeholders who understand this language write more precise requirements and avoid misunderstandings.</div>
+            <div class="lesson-head"><span class="lesson-n">4.1</span><span class="lesson-title">What is a design system and why does it matter to business analysts</span></div>
+            <div class="lesson-why">A design system is not just a component library. It's the shared language between designers and developers. Business Analysts who understand this language write more precise requirements and avoid misunderstandings.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Design Systems 101 — NN/g</a><span class="link-time">8 min</span></div>
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/design-systems-vs-style-guides/" target="_blank">Design Systems vs. Style Guides — NN/g</a><span class="link-time">7 min</span></div>
@@ -689,7 +692,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">4.2</span><span class="lesson-title">Components, tokens, patterns: core terminology</span></div>
-            <div class="lesson-why">A button is a component. #2E28A0 is a color token. A login form is a pattern. Knowing these terms lets stakeholders give precise requirements: "use the standard button component, not a custom one."</div>
+            <div class="lesson-why">A button is a component. #0058E9 is a color token. A login form is a pattern. Knowing these terms lets business analysts give precise requirements: "use the standard button component, not a custom one."</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/front-end-style-guides/" target="_blank">Front-End Style Guides: Definition, Requirements — NN/g</a><span class="link-time">8 min</span></div>
             </div>
@@ -698,7 +701,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">4.3</span><span class="lesson-title">Industry design systems: Material 3, Apple HIG, Atlassian</span></div>
-            <div class="lesson-why">Three major systems that set the standard for most products. Stakeholders who know them better understand why a designer proposes a certain approach — and can evaluate an AI prototype against the standard.</div>
+            <div class="lesson-why">Three major systems that set the standard for most products. Business Analysts who know them better understand why a designer proposes a certain approach — and can evaluate an AI prototype against the standard.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">resource</span><a href="https://m3.material.io/" target="_blank">Material Design 3 — Google (web + mobile)</a><span class="link-time">overview 15 min</span></div>
               <div class="lesson-link"><span class="link-type lt-a">resource</span><a href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">Human Interface Guidelines — Apple (mobile)</a><span class="link-time">overview 15 min</span></div>
@@ -756,7 +759,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: master the proven industry standard. After this module, stakeholders can conduct a quick heuristic analysis and argue problems using specific principles, not intuition.</div>
+        <div class="mod-goal">Goal: master the proven industry standard. After this module, business analysts can conduct a quick heuristic analysis and argue problems using specific principles, not intuition.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">5.1</span><span class="lesson-title">Nielsen's 10 Heuristics — the canonical text</span></div>
@@ -769,7 +772,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">5.2</span><span class="lesson-title">How to conduct a heuristic evaluation + free workbook</span></div>
-            <div class="lesson-why">Article + free workbook from NN/g. Stakeholders get a concrete tool they can use immediately — to analyze client requirements or an AI-generated prototype.</div>
+            <div class="lesson-why">Article + free workbook from NN/g. Business Analysts get a concrete tool they can use immediately — to analyze client requirements or an AI-generated prototype.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/" target="_blank">How to Conduct a Heuristic Evaluation — NN/g</a><span class="link-time">11 min</span></div>
               <div class="lesson-link"><span class="link-type lt-doc">workbook</span><a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Evaluation_Workbook_-_Nielsen_Norman_Group.pdf" target="_blank">Heuristic Evaluation Workbook (PDF) — NN/g</a><span class="link-time">PDF</span></div>
@@ -827,7 +830,7 @@ section + section { border-top: 1px solid var(--border); }
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">6.1</span><span class="lesson-title">State of UX 2026: where the industry is heading</span></div>
-            <div class="lesson-why">NN/g's annual review — state of the field, key challenges, AI's role in design. Gives stakeholders context: why UX quality is becoming more important, not less, in the AI-generation era.</div>
+            <div class="lesson-why">NN/g's annual review — state of the field, key challenges, AI's role in design. Gives business analysts context: why UX quality is becoming more important, not less, in the AI-generation era.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/state-of-ux-2026/" target="_blank">State of UX 2026: Design Deeper to Differentiate — NN/g</a><span class="link-time">12 min</span></div>
             </div>
@@ -836,7 +839,7 @@ section + section { border-top: 1px solid var(--border); }
           <div class="lesson-divider"></div>
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">6.2</span><span class="lesson-title">AI as a new UI paradigm: what it means for interfaces</span></div>
-            <div class="lesson-why">Jakob Nielsen's article on how AI is changing the very principles of human-computer interaction. Helps stakeholders better evaluate not just prototypes, but client requirements for AI-powered features.</div>
+            <div class="lesson-why">Jakob Nielsen's article on how AI is changing the very principles of human-computer interaction. Helps business analysts better evaluate not just prototypes, but client requirements for AI-powered features.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://www.nngroup.com/articles/ai-paradigm/" target="_blank">AI: First New UI Paradigm in 60 Years — NN/g, Jakob Nielsen</a><span class="link-time">10 min</span></div>
             </div>
@@ -958,7 +961,7 @@ section + section { border-top: 1px solid var(--border); }
       <div class="module-head">
         <div class="mod-num">08</div>
         <div class="mod-info">
-          <div class="mod-title">From Stakeholder Requirements to Screens</div>
+          <div class="mod-title">From Business Analyst Requirements to Screens</div>
           <div class="mod-desc">How to translate requirements into a structured prompt. Minimum viable prototype for validation. Iterating via AI chat. Different prompting approaches — web and mobile.</div>
           <div class="mod-badges">
             <span class="badge b-practice">practice</span>
@@ -969,11 +972,11 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: learn to translate raw client requirements into a prototype structure. The stakeholder's key skill — not "make it look nice," but correctly frame an idea for validation.</div>
+        <div class="mod-goal">Goal: learn to translate raw client requirements into a prototype structure. The business analyst's key skill — not "make it look nice," but correctly frame an idea for validation.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">8.1</span><span class="lesson-title">How to write prompts for AI prototyping</span></div>
-            <div class="lesson-why">Prompt quality = prototype quality. A stakeholder who clearly articulates context, target audience, scenario, and constraints gets significantly better results from any AI tool.</div>
+            <div class="lesson-why">Prompt quality = prototype quality. A business analyst who clearly articulates context, target audience, scenario, and constraints gets significantly better results from any AI tool.</div>
             <div class="lesson-links">
               <div class="lesson-link"><span class="link-type lt-a">article</span><a href="https://stormy.ai/blog/how-to-use-v0-dev-ai-web-development-guide" target="_blank">How to Write Effective Prompts for AI UI Tools — Stormy AI</a><span class="link-time">10 min</span></div>
               <div class="lesson-link"><span class="link-type lt-doc">template</span><a href="https://docs.lovable.dev/tips-tricks/from-idea-to-app" target="_blank">Prompt structure: goal → user → screens → features — Lovable Docs</a><span class="link-time">5 min</span></div>
@@ -1029,7 +1032,7 @@ section + section { border-top: 1px solid var(--border); }
       <div class="module-body">
         <div class="mod-goal">Goal: understand what each tool is best for and get first-hand practical experience with each under the speaker's guidance.</div>
 
-        <div style="margin: 16px 0 12px; font-size: 12px; font-weight: 600; color: var(--p1); text-transform: uppercase; letter-spacing: .07em;">UI Prototyping (stakeholder uses directly)</div>
+        <div style="margin: 16px 0 12px; font-size: 12px; font-weight: 600; color: var(--p1); text-transform: uppercase; letter-spacing: .07em;">UI Prototyping (business analyst uses directly)</div>
         <div class="tool-grid">
           <div class="tool-card">
             <div class="tool-cat tool-cat-ui">UI · Mobile</div>
@@ -1068,19 +1071,19 @@ section + section { border-top: 1px solid var(--border); }
           </div>
         </div>
 
-        <div style="margin: 20px 0 12px; font-size: 12px; font-weight: 600; color: var(--p3); text-transform: uppercase; letter-spacing: .07em;">AI Development (stakeholder understands, dev team uses)</div>
+        <div style="margin: 20px 0 12px; font-size: 12px; font-weight: 600; color: var(--p3); text-transform: uppercase; letter-spacing: .07em;">AI Development (business analyst understands, dev team uses)</div>
         <div class="tool-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
           <div class="tool-card">
             <div class="tool-cat tool-cat-dev">AI Dev · CLI</div>
             <div class="tool-name">Claude Code</div>
-            <div class="tool-desc">AI development agent via terminal. Generates, edits and runs code. For stakeholders — know it for communication with the dev team.</div>
+            <div class="tool-desc">AI development agent via terminal. Generates, edits and runs code. For business analysts — know it for communication with the dev team.</div>
             <div class="tool-free">✓ Via claude.ai or API</div>
             <a class="tool-link" href="https://claude.ai/code" target="_blank">docs.claude.ai/code →</a>
           </div>
           <div class="tool-card">
             <div class="tool-cat tool-cat-dev">AI Dev · IDE</div>
             <div class="tool-name">Cursor</div>
-            <div class="tool-desc">AI-powered code editor with chat. Lets developers generate and refactor code through natural language. For stakeholders — know what it is and when the team uses it.</div>
+            <div class="tool-desc">AI-powered code editor with chat. Lets developers generate and refactor code through natural language. For business analysts — know what it is and when the team uses it.</div>
             <div class="tool-free">✓ Free plan</div>
             <a class="tool-link" href="https://www.cursor.com/" target="_blank">cursor.com →</a>
           </div>
@@ -1099,7 +1102,7 @@ section + section { border-top: 1px solid var(--border); }
             <div class="lesson-head"><span class="lesson-n">9.2</span><span class="lesson-title">Claude Design: generating UX concepts and reviewing prototypes</span></div>
             <div class="lesson-why">Claude Design is for when you need to discuss an idea, get solution options, or get a prototype critique. It doesn't draw pixels — it thinks alongside you. Best paired with Figma Make or Lovable.</div>
             <div class="lesson-links">
-              <div class="lesson-link"><span class="link-type lt-d">practice</span><a href="https://claude.ai/design" target="_blank">claude.ai/design — try: "I'm a stakeholder, here are client requirements: [paste]. Suggest a user flow structure for a mobile app"</a><span class="link-time">20 min</span></div>
+              <div class="lesson-link"><span class="link-type lt-d">practice</span><a href="https://claude.ai/design" target="_blank">claude.ai/design — try: "I'm a business analyst, here are client requirements: [paste]. Suggest a user flow structure for a mobile app"</a><span class="link-time">20 min</span></div>
             </div>
           </li>
           <div class="lesson-divider"></div>
@@ -1155,7 +1158,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: learn to check AI prototype quality independently — before showing to a client. The stakeholder becomes the first quality filter, not just a relay for AI output.</div>
+        <div class="mod-goal">Goal: learn to check AI prototype quality independently — before showing to a client. The business analyst becomes the first quality filter, not just a relay for AI output.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">10.1</span><span class="lesson-title">Common AI prototype mistakes: web and mobile separately</span></div>
@@ -1212,7 +1215,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="toggle-arrow">▾</div>
       </div>
       <div class="module-body">
-        <div class="mod-goal">Goal: complete the full stakeholder cycle — from requirements to prototype — and defend it in front of the group. This is the outcome of the entire course.</div>
+        <div class="mod-goal">Goal: complete the full business analyst cycle — from requirements to prototype — and defend it in front of the group. This is the outcome of the entire course.</div>
         <ul class="lesson-list">
           <li class="lesson-item">
             <div class="lesson-head"><span class="lesson-n">11.1</span><span class="lesson-title">How to present a prototype to a client: what to say, what not to</span></div>
@@ -1234,7 +1237,7 @@ section + section { border-top: 1px solid var(--border); }
         </ul>
         <div class="practice-box" style="background:var(--p1-light);border-color:var(--p1)">
           <div class="practice-label" style="color:var(--p1)">🎯 Final Project — Group Defense</div>
-          <div class="practice-text">The full stakeholder cycle:<br><br>
+          <div class="practice-text">The full business analyst cycle:<br><br>
             1. Take a real or fictional client request (1 paragraph of requirements)<br>
             2. Build a user journey map<br>
             3. Choose an AI tool and generate a prototype (3–5 screens) — web or mobile<br>
@@ -1258,7 +1261,7 @@ section + section { border-top: 1px solid var(--border); }
   <div class="container">
     <div class="section-eyebrow">Module 09</div>
     <h2 class="section-title">7 AI Tools in the Course</h2>
-    <p class="section-sub">5 for UI prototyping (stakeholder uses directly) + 2 for understanding AI development.</p>
+    <p class="section-sub">5 for UI prototyping (business analyst uses directly) + 2 for understanding AI development.</p>
     <div class="summary-grid">
       <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Mobile</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Google Stitch</div><a href="https://stitch.withgoogle.com/" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">stitch.withgoogle.com →</a></div>
       <div class="summary-card"><div style="font-size:11px;font-weight:700;color:var(--p1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">UI · Concepts</div><div style="font-size:14px;font-weight:600;margin-bottom:4px">Claude Design</div><a href="https://claude.ai/design" target="_blank" style="font-size:12px;color:var(--p1);text-decoration:none">claude.ai/design →</a></div>
@@ -1275,7 +1278,7 @@ section + section { border-top: 1px solid var(--border); }
 <section id="summary">
   <div class="container">
     <div class="section-eyebrow">Course Summary</div>
-    <h2 class="section-title">What Stakeholders Can Do After the Course</h2>
+    <h2 class="section-title">What Business Analysts Can Do After the Course</h2>
     <p class="section-sub">The full cycle from requirements to a validated prototype — independently, without a designer at every step.</p>
     <div class="summary-grid">
       <div class="summary-card"><div class="summary-n" style="color:var(--p1)">~21</div><div class="summary-l">Hours of learning</div></div>
@@ -1293,7 +1296,7 @@ section + section { border-top: 1px solid var(--border); }
         <div class="skill-item"><span class="skill-num" style="background:var(--p2)">3</span><span class="skill-text">Builds user journey maps and user flows from client requirements — separately for web and mobile contexts</span></div>
         <div class="skill-item"><span class="skill-num" style="background:var(--p2)">4</span><span class="skill-text">Selects the right AI tool for the task and generates a prototype using a structured prompt — web or mobile</span></div>
         <div class="skill-item"><span class="skill-num" style="background:var(--p3)">5</span><span class="skill-text">Conducts a heuristic audit of a prototype and identifies UX problems before showing to a client — with arguments, not feelings</span></div>
-        <div class="skill-item"><span class="skill-num" style="background:var(--p3)">6</span><span class="skill-text">Uses the prototype as a requirements validation tool in conversation with a client or stakeholder — correct presentation technique</span></div>
+        <div class="skill-item"><span class="skill-num" style="background:var(--p3)">6</span><span class="skill-text">Uses the prototype as a requirements validation tool in conversation with a client or business analyst — correct presentation technique</span></div>
       </div>
     </div>
 
@@ -1310,9 +1313,9 @@ section + section { border-top: 1px solid var(--border); }
 </main>
 
 <footer class="footer">
-  <strong>UI/UX Design & AI Prototyping for Stakeholders</strong><br>
+  <strong>UI/UX Design & AI Prototyping for Business Analysts</strong><br>
   Training Course with Speakers · Version 3.0 · 2025–2026<br>
-  Primary source: <a href="https://www.nngroup.com/" target="_blank" style="color:rgba(245,241,235,.4)">Nielsen Norman Group (nngroup.com)</a>
+  Primary source: <a href="https://www.nngroup.com/" target="_blank" style="color:rgba(235,244,251,.4)">Nielsen Norman Group (nngroup.com)</a>
 </footer>
 
 <script>
